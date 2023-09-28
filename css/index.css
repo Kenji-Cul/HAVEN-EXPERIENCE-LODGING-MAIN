@@ -271,3 +271,10 @@ font-style: normal;
 font-weight: 600;
 line-height: 29px; /* 160% */
 }
+
+/* Second Section Styling */
+.div-flex-one img{
+    width: 88px; 
+    height: 88px;
+    border-radius: 8px;
+}
