@@ -19,7 +19,15 @@
         <img src="images/Haven_logo.svg" alt="">
       </div>
     </a>
+    <img src="images/navmenu.png" alt="" class="navmenu">
       <ul>
+        <div class="mobilediv">
+          <a href="index.html"><div class="logo">
+            <img src="images/haven_logo3.png" alt="">
+          </div>
+          </a>
+          <img src="images/close.png" alt="" class="navclose">
+        </div>
         <li class="home-link"><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="partner.html">Partner with us</a></li>
@@ -384,16 +392,16 @@
     <div class="second-section">
       <div class="flexcon-1">
         <div class="large-text-div">
-        <p class="large-text-3">
-          Why pick our serviced
-        </p>
-        <p class="large-text-3">
-          accomodation?
-        </p>
-        <p class="small-text-3">
-          High quality and ease is a constant, but we have a range of styles and budgets to suit, whether a short stay or long-term contact.
-        </p>
-      </div>
+          <p class="large-text-3">
+            Why pick our serviced
+          </p>
+          <p class="large-text-3">
+            accomodation?
+          </p>
+          <p class="small-text-3">
+            High quality and ease is a constant, but we have a range of styles and budgets to suit, whether a short stay or long-term contact.
+          </p>
+       </div>
         <div class="div-flex-one">
           <div>
             <img src="images/card-image2.png" alt="">
@@ -586,6 +594,23 @@
 
 
   <script>
+    if(window.innerWidth < 1000){
+    let menu = document.querySelector('.header .navmenu');
+  let close = document.querySelector('.header .navclose');
+  let dropdown = document.querySelector('.header ul');
+
+  menu.onclick = () =>{
+      dropdown.style = `
+       top: 0;
+      `;
+  }
+
+  close.onclick = () =>{
+      dropdown.style = `
+      top: -100%;
+      `;
+  }
+  }
   let downinput = document.querySelector('#locationinput');
   let numinput = document.querySelector('#numinput');
   let locationone = document.querySelector('#locations');
@@ -594,6 +619,9 @@
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
+
+  
+  
 
   window.addEventListener('click', function(e){   
   if (downinput.contains(e.target) || numinput.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
