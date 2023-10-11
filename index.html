@@ -10,6 +10,56 @@
       a{
         text-decoration: none;
       }
+
+      .product-content,.icon-content,.content-2{
+  width: 100%;
+  background-color: #CBB6A7;
+  padding: 15px 0;
+}
+
+.product-div .icon-content{
+    position: absolute;
+    bottom: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.product-div .content-2{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.content-2 p{
+  color: #fff;
+}
+
+.icon-content i{
+  color: #fff;
+}
+
+.icon-content .icon-child{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.icon-child p{
+  color: #fff;
+}
+
     </style>
 </head>
 <body>
@@ -60,7 +110,7 @@
     
     <div class="input-container">
       <div class="input-div">
-      <form class="form">
+      <form class="form" action="">
         <div class="form__div">
           <input type="text" name="" id="locationinput" class="form__input" placeholder="Where?" value="" >
           <label for="" class="form__label">Location</label>
@@ -305,7 +355,7 @@
         </div>
 
         <div class="form__div">
-          <button type="submit" id="submit">search</button>
+          <button type="submit" id="submit" >search</button>
         </div>
       </form>
     </div>
@@ -327,69 +377,158 @@
 
     <div class="product-container">
          <div class="product-div">
-           <img src="images/card-image2.png" alt="">
-           <div class="product-content">
-            <div>
-              <p class="pone">Ultimate Comfort</p>
-              <p class="ptwo">Southview, Billingham</p> 
+          <div>
+            <img src="images/card-image2.png" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone">Ultimate Comfort</p>
+               <p class="ptwo">Southview, Billingham</p> 
+             </div>
+            <a href="accomodationinfo.html"><button>View</button></a>
+          </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span>3</span> Bedrooms</p>
             </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span>3</span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span>12</span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
            </div>
-         </div>
-
-         <div class="product-div">
-          <img src="images/card-image2.png" alt="">
-          <div class="product-content">
-           <div>
-             <p class="pone">Ultimate Comfort</p>
-             <p class="ptwo">Southview, Billingham</p> 
+           <div class="content-2">
+            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
            </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
-          </div>
+           </div>
         </div>
 
         <div class="product-div">
-          <img src="images/card-image2.png" alt="">
-          <div class="product-content">
-           <div>
-             <p class="pone">Ultimate Comfort</p>
-             <p class="ptwo">Southview, Billingham</p> 
-           </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
+          <div>
+            <img src="images/card-image2.png" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone">Ultimate Comfort</p>
+               <p class="ptwo">Southview, Billingham</p> 
+             </div>
+            <a href="accomodationinfo.html"><button>View</button></a>
           </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span>3</span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span>3</span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span>12</span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
         </div>
 
         <div class="product-div">
-          <img src="images/card-image2.png" alt="">
-          <div class="product-content">
-           <div>
-             <p class="pone">Ultimate Comfort</p>
-             <p class="ptwo">Southview, Billingham</p> 
-           </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
+          <div>
+            <img src="images/card-image2.png" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone">Ultimate Comfort</p>
+               <p class="ptwo">Southview, Billingham</p> 
+             </div>
+            <a href="accomodationinfo.html"><button>View</button></a>
           </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span>3</span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span>3</span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span>12</span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
         </div>
 
         <div class="product-div">
-          <img src="images/card-image2.png" alt="">
-          <div class="product-content">
-           <div>
-             <p class="pone">Ultimate Comfort</p>
-             <p class="ptwo">Southview, Billingham</p> 
-           </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
+          <div>
+            <img src="images/card-image2.png" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone">Ultimate Comfort</p>
+               <p class="ptwo">Southview, Billingham</p> 
+             </div>
+            <a href="accomodationinfo.html"><button>View</button></a>
           </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span>3</span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span>3</span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span>12</span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
         </div>
 
         <div class="product-div">
-          <img src="images/card-image2.png" alt="">
-          <div class="product-content">
-           <div>
-             <p class="pone">Ultimate Comfort</p>
-             <p class="ptwo">Southview, Billingham</p> 
-           </div>
-           <a href="accomodationinfo.html"><button>View</button></a>
+          <div>
+            <img src="images/card-image2.png" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone">Ultimate Comfort</p>
+               <p class="ptwo">Southview, Billingham</p> 
+             </div>
+            <a href="accomodationinfo.html"><button>View</button></a>
           </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span>3</span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span>3</span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span>12</span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
         </div>
     </div>
 
@@ -573,20 +712,20 @@
     <div class="footerdiv-3">
       <p class="head-2">Pages</p>
      <ul>
-      <li><a href="">Home</a></li>
-      <li><a href="">About</a></li>
-      <li><a href="">Become a Partner</a></li>
-      <li><a href="">Affiliates</a></li>
-      <li><a href="">Accomodation</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="partner.html">Become a Partner</a></li>
+      <li><a href="affiliates.html">Affiliates</a></li>
+      <li><a href="accomodation.html">Accomodation</a></li>
      </ul>
     </div>
 
     <div class="footerdiv-4">
       <p class="head-3">Pages</p>
       <ul>
-        <li><a href="">Landlord</a></li>
-        <li><a href="">Services</a></li>
-        <li><a href="">Contact</a></li>
+        <li><a href="landlord.html">Landlord</a></li>
+        <li><a href="landlord.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
        </ul>
        <div class="round-div">
          <a href=""><div class="round">FB</div></a>
@@ -622,10 +761,18 @@
   let locationtwo = document.querySelector('#locations2');
   let checkinput =  document.querySelector('.form__div #checkinput');
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
+  let submit =  document.querySelector('.form__div #submit');
+  let form =  document.querySelector('.form');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
 
-  
+  form.onsubmit = (e) => {
+    e.preventDefault();
+  }
+
+  submit.addEventListener('click',function(){
+    location.href = "search.html";
+  });
   
 
   window.addEventListener('click', function(e){   
@@ -653,7 +800,12 @@
     datecontainer2.style.display = "none";
   }
 
+  
+
+  
+
    let optionclick = document.getElementsByName('category');
+  
    //console.log(document.querySelector('.form__div #locationinput').value)
    
    optionclick.forEach((element) => {
