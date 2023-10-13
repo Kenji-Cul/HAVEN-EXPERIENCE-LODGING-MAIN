@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affiliates</title>
+    <title>Accomodation Info</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -1342,7 +1342,17 @@ border-radius: 18.68px;
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
+  let submit =  document.querySelector('.form__div #submit');
+  let form =  document.querySelector('.form');
 
+  form.onsubmit = (e) => {
+    e.preventDefault();
+  }
+
+  submit.addEventListener('click',function(){
+    location.href = "booking.html";
+  });
+  
   
   
 
