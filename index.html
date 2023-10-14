@@ -11,6 +11,10 @@
         text-decoration: none;
       }
 
+      .datecontainer,.datecontainer2{
+        z-index: 5000;
+      }
+
       .product-content,.icon-content,.content-2{
   width: 100%;
   background-color: #CBB6A7;
@@ -160,7 +164,7 @@
         </div>
 
         <div class="form__div">
-          <input type="text" name="" id="checkinput" class="form__input" placeholder="Sep 19, 2023" value="">
+          <input type="text" name="" id="checkinput" class="form__input" placeholder=" " value="">
           <label for="" class="form__label">Check In</label>
           <div class="datecontainer">
             <div class="calendar">
@@ -231,7 +235,7 @@
         </div>
 
         <div class="form__div">
-          <input type="text" name="" id="checkinput2" class="form__input" placeholder="Sep 19, 2023">
+          <input type="text" name="" id="checkinput2" class="form__input" placeholder=" ">
           <label for="" class="form__label">Check Out</label>
           <div class="datecontainer2">
             <div class="calendar2">
@@ -773,6 +777,11 @@
   submit.addEventListener('click',function(){
     location.href = "search.html";
   });
+
+  downinput.readOnly = true;
+  numinput.readOnly = true;
+  checkinput.readOnly = true;
+  checkinput2.readOnly = true;
   
 
   window.addEventListener('click', function(e){   
@@ -781,8 +790,6 @@
   } else{
     locationone.style.display = "none";
     locationtwo.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
   }
 });
     
@@ -800,7 +807,7 @@
     datecontainer2.style.display = "none";
   }
 
-  
+
 
   
 
@@ -830,6 +837,73 @@
 
    //The Date Programming
    const date = new Date();
+  
+
+   const getDateValue = () => {
+    const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ];
+    checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    let todays = document.querySelectorAll('.present-date');
+
+let monthValue = document.querySelector('.date h1');
+ todays.forEach((element) => {
+  element.onclick = () => {
+    let datevalue = element.innerHTML;
+    let monthval = monthValue.innerHTML;
+    let yearvalue = date.getFullYear();
+    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    checkinput.value = dateval;
+    datecontainer.style.display = "none";
+    // console.log(dateval);
+   }
+  
+ })
+   }
+
+   const getDateValue2 = () => {
+    const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ];
+    checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    let todays = document.querySelectorAll('.present-date2');
+
+let monthValue = document.querySelector('.date2 h1');
+ todays.forEach((element) => {
+  element.onclick = () => {
+    let datevalue = element.innerHTML;
+    let monthval = monthValue.innerHTML;
+    let yearvalue = date.getFullYear();
+    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    checkinput2.value = dateval;
+    datecontainer2.style.display = "none";
+    // console.log(dateval);
+   }
+  
+ })
+   }
 
    const renderCalendar = () => {
     date.setDate(1);
@@ -865,7 +939,8 @@
    
    for(let i =1; i<=lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today present-date">${i}</div>`; 
+      days+=`<div class="today present-date">${i}</div>`;
+      
     }else {
       days+=`<div class="present-date">${i}</div>`;
     }
@@ -925,6 +1000,7 @@
 
 
     monthDays2.innerHTML = days;
+  
      
    }
 
@@ -950,25 +1026,32 @@
    document.querySelector('.prev').addEventListener('click',()=>{
    date.setMonth(date.getMonth() -1)
    renderCalendar();
+     getDateValue();
    })
 
    document.querySelector('.prev2').addEventListener('click',()=>{
    date.setMonth(date.getMonth() -1)
    renderCalendar2();
+   getDateValue2();
    })
 
    document.querySelector('.next').addEventListener('click',()=>{
     date.setMonth(date.getMonth()+ 1)
     renderCalendar();
+    getDateValue();
+    
   })
 
   document.querySelector('.next2').addEventListener('click',()=>{
     date.setMonth(date.getMonth()+ 1)
     renderCalendar2();
+     getDateValue2();
   })
 
   renderCalendar();
   renderCalendar2();
+  getDateValue();
+  getDateValue2();
 
   
   checkinput.onclick = () =>{
@@ -985,6 +1068,7 @@
     datecontainer.style.display = "none";
   }
 
+ 
   
   
 
