@@ -1,3 +1,9 @@
+<?php 
+if(!isset($_GET['id'])){
+  header("Location: index.php");
+}
+include "projectdetails.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +80,25 @@ object-fit: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+}
+
+.accomodate-first .map-div{
+  border: 1px solid black;
+  height: 17em;
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 16px 6px rgba(50, 71, 92, 0.02), 0px 15px 19px 2px rgba(50, 71, 92, 0.04), 0px 7px 19px 5px rgba(50, 71, 92, 0.06);
+
+}
+
+.accomodate-first .map-div img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px!important;
 }
 
 .accomodate-second{
@@ -494,6 +519,43 @@ padding-top: 0.5em;
     margin-top: 2em;
 }
 
+.first-contact .contact-second{
+  height: 20em;
+  width: 25%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 16px 6px rgba(50, 71, 92, 0.02), 0px 15px 19px 2px rgba(50, 71, 92, 0.04), 0px 7px 19px 5px rgba(50, 71, 92, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em;
+}
+
+.contact-second .check-div{
+  color: #7A6D64;
+text-align: center;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 27px */
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.6em;
+padding-top: 1em;
+cursor: pointer;
+}
+
+.check-div .round-check{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #67BFA9;
+}
+
 .first-contact .contact-sec img{
    width: 38em;
    height: 25em;
@@ -611,6 +673,34 @@ text-transform: capitalize;
     width: 80px;
 height: 80px;
 border-radius: 8px;
+}
+
+.imagemodal{
+  position: absolute;
+  top: 0;
+  bottom: -50em;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagemodal .imagescreen{
+  width: 60%;
+  height: 40em;
+  position: absolute;
+  top: 30%;
+  border-radius: 10px;
+}
+
+.imagescreen img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 /* Mobile Screen Styling */
@@ -965,6 +1055,24 @@ padding-left: 1em
 height: 104px;
 border-radius: 18.68px;
 }
+
+.imagemodal .imagescreen{
+  width: 90%; 
+  height: 30em;
+}
+
+.first-contact .contact-second{
+  height: 26em;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 16px 6px rgba(50, 71, 92, 0.02), 0px 15px 19px 2px rgba(50, 71, 92, 0.04), 0px 7px 19px 5px rgba(50, 71, 92, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
+}
 }
 
     </style>
@@ -973,21 +1081,21 @@ border-radius: 18.68px;
     <!-- Header -->
   <div class="head-container">
     <div class="header">
-      <a href="index.html"><div class="logo">
+      <a href="index.php"><div class="logo">
         <img src="images/haven_logo3.png" alt="">
       </div>
      </a>
      <img src="images/menu2.png" alt="" class="navmenu">
       <ul>
         <div class="mobilediv">
-          <a href="index.html"><div class="logo">
+          <a href="index.php"><div class="logo">
             <img src="images/haven_logo3.png" alt="">
           </div>
           </a>
           <img src="images/close.png" alt="" class="navclose">
         </div>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php">About</a></li>
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
         <li  class="home-link"><a href="accomodation.html">Accomodation</a></li>
@@ -999,156 +1107,34 @@ border-radius: 18.68px;
 
   <!-- Accomodation Info Container -->
   <div class="accomodate">
+  <?php 
+       $room = new User;
+       $allrooms = $room->selectRoomDetails($_GET['id']);
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
     <div class="accomodate-first">
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image'])){
+          echo $value['room_image'];
+        }?>" alt="">
     </div>
     <div class="accomodate-second">
-        <p class="pfirst">craig street</p>
-        <p class="psecond">darlington</p>
-        <p class="pthird">Lorem ipsum dolor sit amet consectetur. Pharetra etiam turpis iaculis quis aliquam et ipsum eu in. 
-        Et eget eget sed iaculis velit. Senectus proin faucibus sit amet ante.</p>
+        <p class="pfirst"><?php echo $value['room_name'];?></p>
+        <p class="psecond"><?php echo $value['room_location'];?></p>
+        <p class="pthird"><?php echo $value['description'];?></p>
         <form action="" class="form">
             <div class="flex-div">
               <div class="form__div">
-                <input type="text" name="" id="checkinput" class="form__input first" placeholder="" value="">
+                <input type="text" name="" id="checkinput" class="form__input first" placeholder="" value="<?php echo $value['check_in_date'];?>">
                 <label for="" class="form__label">Check In</label>
-                <div class="datecontainer">
-                  <div class="calendar">
-                    <div class="month">
-                      <i class="fas fa-angle-left prev"></i>
-                      <div class="date">
-                        <h1></h1>
-                        <p></p>
-                      </div>
-                      <i class="fas fa-angle-right next">
-                      </i>
-                    </div>
-                    <div class="weekdays">
-                      <div>Sun</div>
-                      <div>Mon</div>
-                      <div>Tue</div>
-                      <div>Wed</div>
-                      <div>Thu</div>
-                      <div>Fri</div>
-                      <div>Sat</div>
-                    </div>
-                    <div class="days">
-                      <div class="prev-date">26</div>
-                      <div class="prev-date">27</div>
-                      <div class="prev-date">28</div>
-                      <div class="prev-date">29</div>
-                      <div class="prev-date">30</div>
-                      <div class="present-date">1</div>
-                      <div class="present-date">2</div>
-                      <div class="present-date">3</div>
-                      <div class="present-date">4</div>
-                      <div class="present-date">5</div>
-                      <div class="present-date">6</div>
-                      <div class="present-date">7</div>
-                      <div class="present-date">8</div>
-                      <div class="present-date">9</div>
-                      <div class="present-date">10</div>
-                      <div class="present-date">11</div>
-                      <div class="present-date">12</div>
-                      <div class="present-date">13</div>
-                      <div class="present-date">14</div>
-                      <div class="present-date">15</div>
-                      <div class="present-date">16</div>
-                      <div class="present-date">17</div>
-                      <div class="present-date">18</div>
-                      <div class="present-date">19</div>
-                      <div class="present-date">20</div>
-                      <div class="present-date">21</div>
-                      <div class="present-date">22</div>
-                      <div class="present-date">23</div>
-                      <div class="present-date">24</div>
-                      <div class="present-date">25</div>
-                      <div class="present-date">26</div>
-                      <div class="present-date">27</div>
-                      <div class="present-date">28</div>
-                      <div class="present-date">29</div>
-                      <div class="present-date">30</div>
-                      <div class="present-date">31</div>
-                      <div class="next-date">1</div>
-                      <div class="next-date">2</div>
-                      <div class="next-date">3</div>
-                      <div class="next-date">4</div>
-                      <div class="next-date">5</div>
-                      <div class="next-date">6</div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
       
               <div class="form__div">
-                <input type="text" name="" id="checkinput2" class="form__input first" placeholder=" ">
+                <input type="text" name="" id="checkinput2" class="form__input first" placeholder=" " value="<?php echo $value['check_out_date'];?>">
                 <label for="" class="form__label">Check Out</label>
-                <div class="datecontainer2">
-                  <div class="calendar2">
-                    <div class="month2">
-                      <i class="fas fa-angle-left prev2"></i>
-                      <div class="date2">
-                        <h1></h1>
-                        <p></p>
-                      </div>
-                      <i class="fas fa-angle-right next2">
-                      </i>
-                    </div>
-                    <div class="weekdays2">
-                      <div>Sun</div>
-                      <div>Mon</div>
-                      <div>Tue</div>
-                      <div>Wed</div>
-                      <div>Thu</div>
-                      <div>Fri</div>
-                      <div>Sat</div>
-                    </div>
-                    <div class="days2">
-                      <div class="prev-date2">26</div>
-                      <div class="prev-date2">27</div>
-                      <div class="prev-date2">28</div>
-                      <div class="prev-date2">29</div>
-                      <div class="prev-date2">30</div>
-                      <div class="present-date2">1</div>
-                      <div class="present-date2">2</div>
-                      <div class="present-date2">3</div>
-                      <div class="present-date2">4</div>
-                      <div class="present-date2">5</div>
-                      <div class="present-date2">6</div>
-                      <div class="present-date2">7</div>
-                      <div class="present-date2">8</div>
-                      <div class="present-date2">9</div>
-                      <div class="present-date2">10</div>
-                      <div class="present-date2">11</div>
-                      <div class="present-date2">12</div>
-                      <div class="present-date2">13</div>
-                      <div class="present-date2">14</div>
-                      <div class="present-date2">15</div>
-                      <div class="present-date2">16</div>
-                      <div class="present-date2">17</div>
-                      <div class="present-date2">18</div>
-                      <div class="present-date2">19</div>
-                      <div class="present-date2">20</div>
-                      <div class="present-date2">21</div>
-                      <div class="present-date2">22</div>
-                      <div class="present-date2">23</div>
-                      <div class="present-date2">24</div>
-                      <div class="present-date2">25</div>
-                      <div class="present-date2">26</div>
-                      <div class="present-date2">27</div>
-                      <div class="present-date2">28</div>
-                      <div class="present-date2">29</div>
-                      <div class="present-date2">30</div>
-                      <div class="present-date2">31</div>
-                      <div class="next-date2">1</div>
-                      <div class="next-date2">2</div>
-                      <div class="next-date2">3</div>
-                      <div class="next-date2">4</div>
-                      <div class="next-date2">5</div>
-                      <div class="next-date2">6</div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
 
@@ -1210,29 +1196,43 @@ border-radius: 18.68px;
     </div>
   </div>
 
+  
+
   <!-- Multiple Divs Container -->
   <div class="multiple">
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image1'])){
+          echo $value['room_image1'];
+        }?>" alt="">
     </div>
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image2'])){
+          echo $value['room_image2'];
+        }?>" alt="">
     </div>
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image3'])){
+          echo $value['room_image3'];
+        }?>" alt="">
     </div>
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image4'])){
+          echo $value['room_image4'];
+        }?>" alt="">
     </div>
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image5'])){
+          echo $value['room_image5'];
+        }?>" alt="">
     </div>
     <div>
-        <img src="images/card-image2.png" alt="">
+        <img src="roomimage/<?php if(isset($value['room_image6'])){
+          echo $value['room_image6'];
+        }?>" alt="">
     </div>
   </div>
 
- 
+ <?php }}?>
   <!-- First Contact Container -->
       <div class="first-contact">
            <div class="contact-first">
@@ -1250,12 +1250,63 @@ border-radius: 18.68px;
                 <p class="ptwo">blahblah@gmail.com</p>
               </div>
            </div>
-           <div class="contact-sec">
-               <img src="images/mapimage.png" alt="">
+
+           <div class="contact-second">
+               <div>
+               <p>Features</p>
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_one'];?></p>
+                 </div>
+
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_two'];?></p>
+                 </div>
+
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_three'];?></p>
+                 </div>
+
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_four'];?></p>
+                 </div>
+
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_five'];?></p>
+                 </div>
+
+                 <div class="check-div">
+                   <div class="round-check">
+                   <img src="images/check_mark.png" alt="" style="color: #fff;">
+                   </div>
+                   <p><?php echo $value['feature_six'];?></p>
+                 </div>
+               </div>
+              
            </div>
       </div>
 
   
+  <div class="imagemodal">
+
+     <div class="imagescreen">
+       <img src="" alt="">
+     </div>
+  </div>
 
  <!-- Main -->
  <div class="main">
@@ -1293,8 +1344,8 @@ border-radius: 18.68px;
      <div class="footerdiv-3">
       <p class="head-2">Pages</p>
      <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
       <li><a href="accomodation.html">Accomodation</a></li>
@@ -1316,6 +1367,8 @@ border-radius: 18.68px;
     </div>
    </div>
 
+   <!-- AIzaSyAoZvysGPzbEJQ8H2YLX_A-XW2pAN4ASm8 -->
+  
    <script>
     if(window.innerWidth < 1000){
     let menu = document.querySelector('.header .navmenu');
@@ -1340,8 +1393,6 @@ border-radius: 18.68px;
   let locationone = document.querySelector('#locations');
   let checkinput =  document.querySelector('.form__div #checkinput');
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
-  let datecontainer = document.querySelector('.datecontainer');
-  let datecontainer2 = document.querySelector('.datecontainer2');
   let submit =  document.querySelector('.form__div #submit');
   let form =  document.querySelector('.form');
 
@@ -1414,22 +1465,22 @@ border-radius: 18.68px;
     "November",
     "December"
    ];
-    checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    //checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date');
 
-let monthValue = document.querySelector('.date h1');
- todays.forEach((element) => {
-  element.onclick = () => {
-    let datevalue = element.innerHTML;
-    let monthval = monthValue.innerHTML;
-    let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
-    checkinput.value = dateval;
-    datecontainer.style.display = "none";
-    // console.log(dateval);
-   }
+// let monthValue = document.querySelector('.date h1');
+//  todays.forEach((element) => {
+//   element.onclick = () => {
+//     let datevalue = element.innerHTML;
+//     let monthval = monthValue.innerHTML;
+//     let yearvalue = date.getFullYear();
+//     let dateval = datevalue + " " +monthval +  " " + yearvalue  
+//     checkinput.value = dateval;
+//     datecontainer.style.display = "none";
+//     // console.log(dateval);
+//    }
   
- })
+//  })
    }
 
    const getDateValue2 = () => {
@@ -1447,128 +1498,128 @@ let monthValue = document.querySelector('.date h1');
     "November",
     "December"
    ];
-    checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    //checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date2');
 
-let monthValue = document.querySelector('.date2 h1');
- todays.forEach((element) => {
-  element.onclick = () => {
-    let datevalue = element.innerHTML;
-    let monthval = monthValue.innerHTML;
-    let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
-    checkinput2.value = dateval;
-    datecontainer2.style.display = "none";
-    // console.log(dateval);
-   }
+// let monthValue = document.querySelector('.date2 h1');
+//  todays.forEach((element) => {
+//   element.onclick = () => {
+//     let datevalue = element.innerHTML;
+//     let monthval = monthValue.innerHTML;
+//     let yearvalue = date.getFullYear();
+//     let dateval = datevalue + " " +monthval +  " " + yearvalue  
+//     checkinput2.value = dateval;
+//     datecontainer2.style.display = "none";
+//     // console.log(dateval);
+//    }
   
- })
+//  })
    }
 
-   const renderCalendar = () => {
-    date.setDate(1);
-   const monthDays = document.querySelector('.days');
-   const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const firstDayIndex = date.getDay();
-   const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
+  //  const renderCalendar = () => {
+  //   date.setDate(1);
+  //  const monthDays = document.querySelector('.days');
+  //  const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
+  //  const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
+  //  const firstDayIndex = date.getDay();
+  //  const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
 
-   const nextDays = 7 - lastDayIndex - 1;
-   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
+  //  const nextDays = 7 - lastDayIndex - 1;
+  //  const months = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December"
+  //  ];
 
-   document.querySelector('.date h1').innerHTML = months[date.getMonth()];
-   document.querySelector('.date p').innerHTML = new Date().toDateString();
-   let days = "";
+  //  document.querySelector('.date h1').innerHTML = months[date.getMonth()];
+  //  document.querySelector('.date p').innerHTML = new Date().toDateString();
+  //  let days = "";
 
-   for(let x = firstDayIndex; x >0; x--){
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-   }
+  //  for(let x = firstDayIndex; x >0; x--){
+  //   days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+  //  }
    
-   for(let i =1; i<=lastDay; i++){
-    if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today present-date">${i}</div>`; 
-    }else {
-      days+=`<div class="present-date">${i}</div>`;
-    }
+  //  for(let i =1; i<=lastDay; i++){
+  //   if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
+  //     days+=`<div class="today present-date">${i}</div>`; 
+  //   }else {
+  //     days+=`<div class="present-date">${i}</div>`;
+  //   }
 
 
-    monthDays.innerHTML = days;
+  //   monthDays.innerHTML = days;
      
-   }
+  //  }
 
-   for(let j = 1; j <= nextDays; j++){
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
-   }
-   //console.log(date);
+  //  for(let j = 1; j <= nextDays; j++){
+  //   days += `<div class="next-date">${j}</div>`;
+  //   monthDays.innerHTML = days;
+  //  }
+  //  //console.log(date);
 
-   }
+  //  }
 
 
-   const renderCalendar2 = () => {
-    date.setDate(1);
-   const monthDays2 = document.querySelector('.days2');
-   const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const firstDayIndex = date.getDay();
-   const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
+  //  const renderCalendar2 = () => {
+  //   date.setDate(1);
+  //  const monthDays2 = document.querySelector('.days2');
+  //  const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
+  //  const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
+  //  const firstDayIndex = date.getDay();
+  //  const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
 
-   const nextDays = 7 - lastDayIndex - 1;
-   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
+  //  const nextDays = 7 - lastDayIndex - 1;
+  //  const months = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December"
+  //  ];
 
-   document.querySelector('.date2 h1').innerHTML = months[date.getMonth()];
-   document.querySelector('.date2 p').innerHTML = new Date().toDateString();
-   let days = "";
+  //  document.querySelector('.date2 h1').innerHTML = months[date.getMonth()];
+  //  document.querySelector('.date2 p').innerHTML = new Date().toDateString();
+  //  let days = "";
 
-   for(let x = firstDayIndex; x >0; x--){
-    days += `<div class="prev-date2">${prevLastDay - x + 1}</div>`;
-   }
+  //  for(let x = firstDayIndex; x >0; x--){
+  //   days += `<div class="prev-date2">${prevLastDay - x + 1}</div>`;
+  //  }
    
-   for(let i =1; i<=lastDay; i++){
-    if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today2 present-date2">${i}</div>`; 
-    }else {
-      days+=`<div class="present-date2">${i}</div>`;
-    }
+  //  for(let i =1; i<=lastDay; i++){
+  //   if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
+  //     days+=`<div class="today2 present-date2">${i}</div>`; 
+  //   }else {
+  //     days+=`<div class="present-date2">${i}</div>`;
+  //   }
 
 
-    monthDays2.innerHTML = days;
+  //   monthDays2.innerHTML = days;
      
-   }
+  //  }
 
-   for(let j = 1; j <= nextDays; j++){
-    days += `<div class="next-date2">${j}</div>`;
-    monthDays2.innerHTML = days;
-   }
-   //console.log(date);
+  //  for(let j = 1; j <= nextDays; j++){
+  //   days += `<div class="next-date2">${j}</div>`;
+  //   monthDays2.innerHTML = days;
+  //  }
+  //  //console.log(date);
 
-   }
+  //  }
 
 
 
@@ -1581,32 +1632,32 @@ let monthValue = document.querySelector('.date2 h1');
   //      });
   
    
-   document.querySelector('.prev').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar();
-   getDateValue();
-   })
+  //  document.querySelector('.prev').addEventListener('click',()=>{
+  //  date.setMonth(date.getMonth() -1)
+  //  renderCalendar();
+  //  getDateValue();
+  //  })
 
-   document.querySelector('.prev2').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar2();
-   getDateValue2();
-   })
+  //  document.querySelector('.prev2').addEventListener('click',()=>{
+  //  date.setMonth(date.getMonth() -1)
+  //  renderCalendar2();
+  //  getDateValue2();
+  //  })
 
-   document.querySelector('.next').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar();
-    getDateValue();
-  })
+  //  document.querySelector('.next').addEventListener('click',()=>{
+  //   date.setMonth(date.getMonth()+ 1)
+  //   renderCalendar();
+  //   getDateValue();
+  // })
 
-  document.querySelector('.next2').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar2();
-    getDateValue2();
-  })
+  // document.querySelector('.next2').addEventListener('click',()=>{
+  //   date.setMonth(date.getMonth()+ 1)
+  //   renderCalendar2();
+  //   getDateValue2();
+  // })
 
-  renderCalendar();
-  renderCalendar2();
+  // renderCalendar();
+  // renderCalendar2();
   getDateValue();
   getDateValue2();
 
@@ -1623,6 +1674,20 @@ let monthValue = document.querySelector('.date2 h1');
     datecontainer.style.display = "none";
   }
 
+  let allimages = document.querySelectorAll('.multiple img');
+  //console.log(allimages);
+  allimages.forEach((element) => {
+  element.onclick = () => {
+      //console.log(element.src);
+      document.querySelector('.imagemodal').style.display = "flex";
+      document.querySelector('.imagescreen img').src = element.src;
+   }
+  
+ })
+
+ document.querySelector('.imagemodal').addEventListener('click', function(e){  
+  document.querySelector('.imagemodal').style.display = "none";
+  })
 
   </script>
 </body>

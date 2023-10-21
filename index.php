@@ -1,3 +1,7 @@
+<?php 
+include "projectdetails.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -380,160 +384,55 @@
     </div>
 
     <div class="product-container">
+      <?php 
+       $room = new User;
+       $allrooms = $room->selectRooms();
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
          <div class="product-div">
           <div>
-            <img src="images/card-image2.png" alt="">
+            <img src="roomimage/<?php if(isset($value['room_image'])){
+              echo $value['room_image'];
+            }
+            ?>" alt="">
             <div class="product-content">
              <div>
-               <p class="pone">Ultimate Comfort</p>
-               <p class="ptwo">Southview, Billingham</p> 
+               <p class="pone"><?php echo $value['room_name'];?></p>
+               <p class="ptwo"><?php echo $value['room_location'];?></p> 
              </div>
-            <a href="accomodationinfo.html"><button>View</button></a>
+            <a href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka"><button>View</button></a>
           </div>
            <div class="icon-content">
             <div class="icon-child">
               <i class="fa fa-bed" aria-hidden="true"></i>
-              <p><span>3</span> Bedrooms</p>
+              <p><span><?php echo $value['no_of_bedrooms'];?></span> Bedrooms</p>
             </div>
             <div class="icon-child">
               <i class="fa fa-bath" aria-hidden="true"></i>
-              <p><span>3</span> Baths</p>
+              <p><span><?php echo $value['no_of_baths'];?></span> Baths</p>
             </div>
             <div class="icon-child">
               <i class="fa fa-user" aria-hidden="true"></i>
-              <p><span>12</span> Guests</p>
+              <p><span><?php echo $value['no_of_guests'];?></span> Guests</p>
             </div>
            <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
            </div>
            <div class="content-2">
-            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
+            <p>£<span><?php $pricepernight = $value['price_per_night'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></span>&nbsp;/&nbsp;night</p>
            </div>
            </div>
         </div>
+        <?php }}?>
 
-        <div class="product-div">
-          <div>
-            <img src="images/card-image2.png" alt="">
-            <div class="product-content">
-             <div>
-               <p class="pone">Ultimate Comfort</p>
-               <p class="ptwo">Southview, Billingham</p> 
-             </div>
-            <a href="accomodationinfo.html"><button>View</button></a>
-          </div>
-           <div class="icon-content">
-            <div class="icon-child">
-              <i class="fa fa-bed" aria-hidden="true"></i>
-              <p><span>3</span> Bedrooms</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-bath" aria-hidden="true"></i>
-              <p><span>3</span> Baths</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <p><span>12</span> Guests</p>
-            </div>
-           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
-           </div>
-           <div class="content-2">
-            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
-           </div>
-           </div>
-        </div>
-
-        <div class="product-div">
-          <div>
-            <img src="images/card-image2.png" alt="">
-            <div class="product-content">
-             <div>
-               <p class="pone">Ultimate Comfort</p>
-               <p class="ptwo">Southview, Billingham</p> 
-             </div>
-            <a href="accomodationinfo.html"><button>View</button></a>
-          </div>
-           <div class="icon-content">
-            <div class="icon-child">
-              <i class="fa fa-bed" aria-hidden="true"></i>
-              <p><span>3</span> Bedrooms</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-bath" aria-hidden="true"></i>
-              <p><span>3</span> Baths</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <p><span>12</span> Guests</p>
-            </div>
-           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
-           </div>
-           <div class="content-2">
-            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
-           </div>
-           </div>
-        </div>
-
-        <div class="product-div">
-          <div>
-            <img src="images/card-image2.png" alt="">
-            <div class="product-content">
-             <div>
-               <p class="pone">Ultimate Comfort</p>
-               <p class="ptwo">Southview, Billingham</p> 
-             </div>
-            <a href="accomodationinfo.html"><button>View</button></a>
-          </div>
-           <div class="icon-content">
-            <div class="icon-child">
-              <i class="fa fa-bed" aria-hidden="true"></i>
-              <p><span>3</span> Bedrooms</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-bath" aria-hidden="true"></i>
-              <p><span>3</span> Baths</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <p><span>12</span> Guests</p>
-            </div>
-           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
-           </div>
-           <div class="content-2">
-            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
-           </div>
-           </div>
-        </div>
-
-        <div class="product-div">
-          <div>
-            <img src="images/card-image2.png" alt="">
-            <div class="product-content">
-             <div>
-               <p class="pone">Ultimate Comfort</p>
-               <p class="ptwo">Southview, Billingham</p> 
-             </div>
-            <a href="accomodationinfo.html"><button>View</button></a>
-          </div>
-           <div class="icon-content">
-            <div class="icon-child">
-              <i class="fa fa-bed" aria-hidden="true"></i>
-              <p><span>3</span> Bedrooms</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-bath" aria-hidden="true"></i>
-              <p><span>3</span> Baths</p>
-            </div>
-            <div class="icon-child">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <p><span>12</span> Guests</p>
-            </div>
-           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
-           </div>
-           <div class="content-2">
-            <p>£<span>200.00</span>&nbsp;/&nbsp;night</p>
-           </div>
-           </div>
-        </div>
+  
     </div>
 
     <!-- Second Section -->
