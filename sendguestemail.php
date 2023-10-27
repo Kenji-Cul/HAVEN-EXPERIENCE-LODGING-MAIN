@@ -23,16 +23,16 @@ $mail->Username = EMAIL;
 $mail->Password = PASSWORD;
 // $mail->SetFrom('simpletech.notify@gmail.com', 'notification');
 $mail->Subject = 'From HAVEN EXPERIENCE LODGING';
-$mail->Body = '<p>Thank you for choosing '.$room.'.
-'.$name.'
-Make sure to get back to us as soon as possible.
-Best Regards.
-</p><br>';
+$mail->Body = '<h2>Thank you for choosing '.$room.'.
+
+</h2><br>
+<h2>'.$name.' make sure to get back to us as soon as possible</p><h2>
+<h2>Best Regards</h2><br>';
 $mail->AltBody = "This is the plain text version of the email content";
 $mail->From = "$mainemail";
-$mail->FromName = "Yurland";
-$mail->AddAddress($userEmail);
-// $mail->addReplyTo('info@simpletech.com.ng');
+$mail->FromName = "HAVEN EXPERIENCE LODGING";
+$mail->AddAddress($_GET['email']);
+$mail->addReplyTo('noreply@gmail.com');
 try {
     $mail->send();
     echo "success";

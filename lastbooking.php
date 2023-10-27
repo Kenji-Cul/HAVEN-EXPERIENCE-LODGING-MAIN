@@ -1060,8 +1060,8 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
       if(xhr.readyState === XMLHttpRequest.DONE){
         if(xhr.status === 200) {
           let data = xhr.response;
-           if(data === "success"){
-            console.log(data);
+           if(data === ""){
+            
             error.style.display = "flex";
             error.style.backgroundColor = "green";
             error.textContent = "Details submitted";

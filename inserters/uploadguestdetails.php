@@ -40,8 +40,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         } else {
             $createroom = $user->createGuests(check_input($title),check_input($firstname),check_input($surname),check_input($email),check_input($telephone),check_input($mobile),check_input($address),
             check_input($city),check_input($postcode),check_input($residence),check_input($arrivaltime),check_input($comments),check_input($unique),check_input($uniquedate1),check_input($uniquedate2),check_input($uniquenights),check_input($uniqueguestno),check_input($uniqueprice),check_input($uniqueroom));
-            header("Location: ../sendguestemail.php?name=$name&room=$uniqueroom");
-                echo $createroom;
+            header("Location: ../sendguestemail.php?name=$name&room=$uniqueroom&email=$email");
+               if(isset($_GET['message'])){
+                echo $_GET['message'];
+               }
         }
     
     }
