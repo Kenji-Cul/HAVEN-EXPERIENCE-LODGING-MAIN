@@ -8,8 +8,8 @@ require 'vendor/autoload.php';
 include_once "enc.php";
 ob_start();
 
-
-
+$room = $_GET['room'];
+$name = $_GET['name'];
 
         $mail = new PHPMailer(true);
 $mail->SMTPDebug = 3;   
@@ -22,11 +22,12 @@ $mail->isHTML(true);
 $mail->Username = EMAIL;
 $mail->Password = PASSWORD;
 // $mail->SetFrom('simpletech.notify@gmail.com', 'notification');
-$mail->Subject = 'Reset your password for Yurland';
-$mail->Body = '<p>We received a password reset request. The link to reset your password is below 
-to make this request, you can ignore this email</p><br><p>Here is your 6 digit code: '.$random.'<br>
-This is your reset link '.$url.'
-</p>';
+$mail->Subject = 'From HAVEN EXPERIENCE LODGING';
+$mail->Body = '<p>Thank you for choosing '.$room.'.
+'.$name.'
+Make sure to get back to us as soon as possible.
+Best Regards.
+</p><br>';
 $mail->AltBody = "This is the plain text version of the email content";
 $mail->From = "$mainemail";
 $mail->FromName = "Yurland";
@@ -39,7 +40,7 @@ try {
     echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-header("Location: forgotpassword.php?reset=success");
+header("Location: inserters/uploadguestdetails.php?message=success");
 
 
 
