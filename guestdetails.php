@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include "projectdetails.php";
 ?>
 
@@ -801,11 +802,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
             </div> -->
             <div class="booking-child-2">
                 <p>Your Details</p>
-                <form action="" id="secondform">
-                        <button type="submit" id="submit">Print</button>
-                    <div class="form--div">
-                        <p style="font-size: 15px;">Dear Guest,</p>
-                        <?php 
+                <?php 
        $room = new User;
        $allrooms = $room->selectRoomDetails($_GET['unique']);
        $allrooms2 = $room->selectGuestDetails($_GET['u']);
@@ -813,6 +810,31 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
        if(!empty($allrooms2)){
         foreach ($allrooms2 as $key => $value) {
       ?>
+                <form action="" id="secondform" method="POST">
+                        <button type="submit" id="submit">Print</button>
+                        <?php 
+                        if($_SERVER['REQUEST_METHOD'] == "POST"){ 
+                            $uniquename = rand();
+                            $filename = "document".$uniquename.".pdf";
+                            $name = $value['first_name'];
+                        $name2 = $value['surname'];
+                        $fullname = $name ." " . $name2;
+                        $roomname = $value['roomname'];
+                        $arrival = $value['check_in_date'];
+                        $departure = $value['check_out_date'];
+                        $nights = $value['nights'];
+                        $guests = $value['guests'];
+                      
+                        $grandtotal = $value['grandtotal'];
+                        $url = "printdetails.php?filename='$filename'&name='$fullname'&roomname='$roomname'&arrival='$arrival'&departure='$departure'&nights='$nights'
+                        &guests='$guests'&grandtotal='$grandtotal'";
+                        $url=str_replace(PHP_EOL, '', $url);
+                          header("Location: $url");
+                        }
+                        ?>
+                    <div class="form--div">
+                        <p style="font-size: 15px;">Dear Guest,</p>
+                        
                         <p style="font-size: 15px;">Thank you for choosing <?php echo $value['roomname'];?></p>
                         <?php 
                                 $name = $value['first_name'];
@@ -980,65 +1002,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
   
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    checkNullInputs();
-    insertGuestDetails();
-  }
-
-  function checkNullInputs(){
-       allinputs.forEach((element) => {
-        element.oninput = () => {
-            if(element.value == ""){
-         element.style.borderColor = "red";
-       } else {
-        element.style.borderColor = "black";
-       }
-        }
-        //console.log(element);
-       if(element.value == ""){
-         element.style.borderColor = "red";
-       } else {
-        element.style.borderColor = "black";
-       }
-   })
-  }
-
-
-  function insertGuestDetails(){
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST","inserters/uploadguestdetails.php",true);
-    xhr.onload = () => {
-      if(xhr.readyState === XMLHttpRequest.DONE){
-        if(xhr.status === 200) {
-          let data = xhr.response;
-           if(data === "success"){
-            //console.log("uploaded");
-            error.style.display = "flex";
-            error.style.backgroundColor = "green";
-            error.textContent = "Details submitted";
-           
-            location.href=`guestdetails.php?u=${uniqueinput.value}&unique=<?php echo $value['unique_id']?>&runi=uagfjagfaj`;
-           
-            allinputs.forEach((element) => { 
-              element.value = "";
-            })
-           } else {
-               console.log(data);
-               error.style.display = "flex";
-               error.textContent = data;
-           }
-        }
-      }
-    }
-    let formData = new FormData(form);
-    xhr.send(formData);
-  }
   
-  backbutton.addEventListener('click',function(e){
-   location.href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka";
-  })
-
 //   window.addEventListener('click', function(e){   
 //   if (downinput.contains(e.target)  || downinput2.contains(e.target) || numinput.contains(e.target) ||  numinput2.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
 //     // Clicked in box
@@ -1054,21 +1018,12 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
     
   
 
-
- 
-
-
- 
-
   // submit.addEventListener('click',function(){
   //   location.href = "lastbooking.html";
   // });
   
 
   
-
- 
-
    let optionclick3 = document.getElementsByName('category2');
   
    //console.log(document.querySelector('.form__div #locationinput').value)
@@ -1285,3 +1240,4 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
   </script>
 </body>
 </html>
+<?php ob_end_flush();?>

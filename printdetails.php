@@ -4,7 +4,7 @@ require 'dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 ob_start();
 //Getting image
-$png = file_get_contents('http://localhost/Yurland/images/yurlogo.png');
+$png = file_get_contents('http://localhost/HAVEN-EXPERIENCE-LODGING-MAIN/images/haven_logo3.png');
 $pngbase64 = base64_encode($png);
 
 
@@ -20,7 +20,7 @@ $txt = '
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">   
-    <title>Allocation Letter</title>
+    <title>Room Details</title>
     <style>
     .body {
         display: flex;
@@ -97,51 +97,21 @@ $txt = '
 <h1>yurLAND</h1>
 </div>
 <div class="customer">
-    <h4>Dear '.$_GET['customer'].'</h4>
+    <h4>Dear '.$_GET['name'].'</h4>
+    <p>Please check your details:</p>
 </div>
 <div class="list">
     <ul>
-        <li>ESTATE NAME: '.$_GET['estatename'].'</li>
-        <li>LOCATION: '.$_GET['estatelocal'].'</li>
+        <li>Room: '.$_GET['room'].'</li>
+        <li>Arrival Date: '.$_GET['arrival'].'</li>
+        <li>Departure: '.$_GET['departure'].'</li>
+        <li>Nights: '.$_GET['nights'].'</li> 
+        <li>Guests: '.$_GET['guests'].'</li>
+        <li>Price: £'.$_GET['price'].'</li>
+        <li>Grand Total: £'.$_GET['grandtotal'].'</li>
     </ul>
 </div>
-<div class="heading">
-    <h2 style="text-transform: uppercase">INVITE FOR ALLOCATION</h2>
-    <p>
-        Once again, we appreciate your interest in <b>yurLAND</b> and are sending you this document to formerly affirm
-        that you
-        have made and we have received the complete payment for our estate project which you subscribed to. In
-        accordance to our terms and promise
-        for instant allocation, we are setting the ground by inviting you to the next phase of your purchase which is
-        the allocation of the estate you subscribed to and have completed payment for. Details of allocation would be
-        communicated to
-        you via mail and a follow up text via SMS, so we advise that you reconfirm your submitted email and phone
-        number. Also, as stated in our product description, you are to pay in the sum of <span
-            class="naira">&#x20A6;'.$_GET['allocationfee'].'</span> either by cash or direct bank transfer to the
-        account number provided
-        below and send proof of payment to our support staff via Whatsapp(09124259139). You can also walk into our
-        office, having
-        this document as a proof to make your allocation fee payment.
-        We expect that you respond to this document within 14days of receipt, to allow us properly plan for your
-        allocation, ensuring that all your documents attached are prepared and ready to be handed over to you on the day
-        of allocation. Thank
-        you for trusting us, we are glad we could be part of making your dream to own a LAND come true.
-    </p>
-    <div style="
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    ">
-        <p>Acct Number: 1017004706</p>
-        <p>Bank Name: Zenith Bank</p>
-        <p>
-            Office Address: 1 Abiola Adeyemi Street, Off Ologunfe B/Stop, NNPC
-            Filling Station Plaza, Ikotun-Igando Road, Ikotun, Lagos.
-        </p>
-    </div>
-</div>
+
 
 <div class="heading">
     <p>Regards</p>
@@ -151,7 +121,7 @@ $txt = '
                     padding-right: 74%;
                     font-size: 18px;
                   ">
-        <b>The yurLAND Team</b>
+        <b>HAVEN EXPERIENCE LODGING</b>
     </h2>
 </div>
 </div>
@@ -179,26 +149,5 @@ $output = $dompdf->output();
 file_put_contents($_GET['filename'], $output);
 rename("".$_GET['filename']."","userdocuments/".$_GET['filename']."");
 fclose($myfile);
-
-$paymentdate = date("M-d-Y");
-
-$unitprice = $_GET['amount'];
-if($unitprice > 999 || $unitprice > 9999 || $unitprice > 99999 || $unitprice > 999999){
-$amount3 = number_format($unitprice);
-} else {
-$amount3 = round($unitprice);
-}
-
-$unitprice2 = $_GET['balance'];
-if($unitprice2 > 999 || $unitprice2 > 9999 || $unitprice2 > 99999 || $unitprice2 > 999999){
-$amount4 = number_format($unitprice2);
-} else {
-$amount4 = round($unitprice2);
-}
-if(isset($_GET['mode'])){
-header("Location:successemail.php?name=".$_GET['customer']."&date=".$paymentdate."&amount=".$amount3."&estate=".$_GET['estatename']."&balance=".$amount4."&payer=".$_GET['payer']."&email=".$_GET['email']."&mode=".$_GET['mode']."");
-} else {
-header("Location:successemail.php?name=".$_GET['customer']."&date=".$paymentdate."&amount=".$amount3."&estate=".$_GET['estatename']."&balance=".$amount4."&payer=".$_GET['payer']."&email=".$_GET['email']."");
-}
 
 ob_end_flush();
