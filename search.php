@@ -1,9 +1,12 @@
+<?php 
+include "projectdetails.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
+    <title>Search</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -15,25 +18,9 @@ a{
   top: 5em;
 }
 
-.div-input{
-    height: 400px;
-}
-
-.form__div img{
-    width: 17em;
-    height: 15em;
-    border-radius: 8px;
-    position: absolute;
-    top: 4em;
-    right: 20%;
-    object-fit: cover;
-}
-
 .datecontainer,.datecontainer2,#locations,#locations2,#locations3,#locations4,#locations5{
   z-index: 3000;
 }
-
-
 
 .product-content,.icon-content,.content-2{
   width: 100%;
@@ -89,7 +76,7 @@ a{
       
 body{
     overflow-x:hidden;
-    height: 150vh;
+    height: 160vh;
 }
         .head-container{
             padding-top: 20px;
@@ -246,6 +233,31 @@ font-weight: 400;
 line-height: 25.2px;
 }
 
+/* Serach Empty Div */
+.booking-1{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 19px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.booking-1 p{
+ 
+color: var(--light-text-primary, rgba(50, 71, 92, 0.87));
+font-feature-settings: 'clig' off, 'liga' off;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 32px; /* 160% */
+letter-spacing: 0.15px;
+text-align: left;
+width: 100%;
+
+}
 
 /* Mobile Screen Styling */
 @media only screen and (max-width: 800px){
@@ -340,20 +352,6 @@ padding: 1em;
     height: 15em;
     object-fit: cover;
 }
-
-.div-input{
-    height: 710px;
-}
-
-.form__div img{
-    width: 17em;
-    height: 15em;
-    border-radius: 8px;
-    position: absolute;
-    top: 22em;
-    left: 2%;
-    object-fit: cover;
-}
 }
 
     </style>
@@ -389,53 +387,49 @@ padding: 1em;
 
   <div class="input-container">
     <div class="input-div">
-    <form class="form" action="">
+    <form class="form" action="" id="form1">
       <div class="form__div">
-        <input type="text" name="" id="locationinput" class="form__input" placeholder="1" value="" >
-        <label for="" class="form__label">Nights</label>
+        <input type="text" name="" id="locationinput" class="form__input" placeholder="Where?" value="" >
+        <label for="" class="form__label">Location</label>
        
         <div class="select-container">
           <div name="" id="locations" class="active">
             <div class="option">
-              <input type="radio" class="radio" id="Billingham" name="number2" value="1">
-              <label for="Billingham">1</label>
+              <input type="radio" class="radio" id="Billingham" name="category" value="Billingham">
+              <label for="Billingham">Billingham</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Darlington" name="number2" value="2">
-              <label for="Darlington">2</label>
+              <input type="radio" class="radio" id="Darlington" name="category" value="Darlington">
+              <label for="Darlington">Darlington</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Guisborough" name="number2" value="3">
-              <label for="Guisborough">3</label>
+              <input type="radio" class="radio" id="Guisborough" name="category" value="Guisborough">
+              <label for="Guisborough">Guisborough</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Hartlepool" name="number2" value="4">
-              <label for="Hartlepool">4</label>
+              <input type="radio" class="radio" id="Hartlepool" name="category" value="Hartlepool">
+              <label for="Hartlepool">Hartlepool</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Middlesborough" name="number2" value="5">
-              <label for="Middlesborough">5</label>
+              <input type="radio" class="radio" id="Middlesborough" name="category" value="Middlesborough">
+              <label for="Middlesborough">Middlesborough</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Peterborough" name="number2" value="6">
-              <label for="Peterborough">6</label>
+              <input type="radio" class="radio" id="Peterborough" name="category" value="Peterborough">
+              <label for="Peterborough">Peterborough</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Redcar" name="number2" value="7">
-              <label for="Redcar">7</label>
+              <input type="radio" class="radio" id="Redcar" name="category" value="Redcar">
+              <label for="Redcar">Redcar</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="Stockton" name="number2" value="8">
-              <label for="Stockton">8</label>
+              <input type="radio" class="radio" id="Stockton" name="category" value="Stockton">
+              <label for="Stockton">Stockton</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="West Kingsdown" name="number2" value="9">
-              <label for="West Kingsdown">9</label>
+              <input type="radio" class="radio" id="West Kingsdown" name="category" value="West Kingsdown">
+              <label for="West Kingsdown">West Kingsdown</label>
             </div>
-            <div class="option">
-                <input type="radio" class="radio" id="West Kingsdown" name="number2" value="10">
-                <label for="West Kingsdown">10</label>
-              </div>
            
   
           </div>
@@ -647,21 +641,12 @@ padding: 1em;
   </div>
 
 
-  
-
   <div class="input-container">
-    <div class="input-div div-input" style="margin-top: 3em;">
-    <form class="form" action="" id="secondform">
-        <div class="form__div" style="width: 250px;">
-            <p>Flat 3 - Globe Apartments</p>
-            <p>Price: <span>from £270.00</span></p>
-            <div>
-                <img src="images/card-image2.png" alt="">
-            </div>
-        </div>
+    <div class="input-div" style="margin-top: 3em;">
+    <form class="form" action="" id="form2">
       <div class="form__div">
         <input type="text" name="" id="locationinput2" class="form__input" placeholder="1" value="">
-        <label for="" class="form__label">Quantity</label>
+        <label for="" class="form__label">NO. OF BEDROOMS</label>
        
         <div class="select-container">
           <div name="" id="locations3" class="active">
@@ -710,74 +695,240 @@ padding: 1em;
       </div>
       </div>
 
+
       <div class="form__div">
-        <input type="text" name="" class="form__input" placeholder="Guests" id="numinput2" value="">
-        <label for="" class="form__label">Guests</label>
+        <input type="number" name="" class="form__input" placeholder="1" id="numinput2" value="">
+        <label for="" class="form__label">NO. OF BATHROOMS</label>
 
         <div class="select-container">
           <div name="" id="locations4" class="active">
             <div class="option">
-              <input type="radio" class="radio" id="one3" name="numbers" value="1 Guest">
-              <label for="one3">1 Guest</label>
+              <input type="radio" class="radio" id="one3" name="number2" value="1">
+              <label for="one3">1</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="two3" name="numbers" value="2 Guests">
-              <label for="two3">2 Guests</label>
+              <input type="radio" class="radio" id="two3" name="number2" value="2">
+              <label for="two3">2</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="three3" name="numbers" value="3 Guests">
-              <label for="three3">3 Guests</label>
+              <input type="radio" class="radio" id="three3" name="number2" value="3">
+              <label for="three3">3</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="four3" name="numbers" value="4 Guests">
-              <label for="four3">4 Guests</label>
+              <input type="radio" class="radio" id="four3" name="number2" value="4">
+              <label for="four3">4</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="five3" name="numbers" value="5 Guests">
-              <label for="five3">5 Guests</label>
+              <input type="radio" class="radio" id="five3" name="number2" value="5">
+              <label for="five3">5</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="six3" name="numbers" value="6 Guests">
-              <label for="six3">6 Guests</label>
+              <input type="radio" class="radio" id="six3" name="number2" value="6">
+              <label for="six3">6</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="seven3" name="numbers" value="7 Guests">
-              <label for="seven3">7 Guests</label>
+              <input type="radio" class="radio" id="seven3" name="number2" value="7">
+              <label for="seven3">7</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="eight3" name="numbers" value="8 Guests">
-              <label for="eight3">8 Guests</label>
+              <input type="radio" class="radio" id="eight3" name="number2" value="8">
+              <label for="eight3">8</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="nine3" name="numbers" value="9 Guests">
-              <label for="nine3">9 Guests</label>
+              <input type="radio" class="radio" id="nine3" name="number2" value="9">
+              <label for="nine3">9</label>
             </div>
             <div class="option">
-              <input type="radio" class="radio" id="ten3" name="numbers" value="10 Guests">
-              <label for="ten3">10 Guests</label>
+              <input type="radio" class="radio" id="ten3" name="number2" value="10">
+              <label for="ten3">10</label>
             </div>
   
           </div>
       </div>
     </div>
 
-    <div class="form__div formdiv2">
-        <button type="submit" id="submit">book now</button>
+
+    <div class="form__div">
+      <input type="number" name="" class="form__input" placeholder="1" id="numinput3" value="">
+      <label for="" class="form__label">NO. OF GUESTS</label>
+
+      <div class="select-container">
+        <div name="" id="locations5" class="active">
+          <div class="option">
+            <input type="radio" class="radio" id="one4" name="number3" value="1">
+            <label for="one4">1</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="two4" name="number3" value="2">
+            <label for="two4">2</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="three4" name="number3" value="3">
+            <label for="three4">3</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="four4" name="number3" value="4">
+            <label for="four4">4</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="five4" name="number3" value="5">
+            <label for="five4">5</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="six4" name="number3" value="6">
+            <label for="six4">6</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="seven4" name="number3" value="7">
+            <label for="seven4">7</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="eight4" name="number3" value="8">
+            <label for="eight4">8</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="nine4" name="number3" value="9">
+            <label for="nine4">9</label>
+          </div>
+          <div class="option">
+            <input type="radio" class="radio" id="ten4" name="number3" value="10">
+            <label for="ten4">10</label>
+          </div>
+
+        </div>
+    </div>
+  </div>
+
+  
+  <div class="form__div">
+        <button type="submit" id="submit" >search</button>
       </div>
     </form>
   </div>
   </div>
 
- 
+       
+
 
        
 
 
  <!-- Main -->
  <div class="main">
-  
+ <?php 
+   $room = new User;
+   $allrooms = $room->selectRooms();
+   if(isset($_GET['location']) && isset($_GET['checkin']) && isset($_GET['checkout']) && isset($_GET['guests'])){
+    $searchroom = $room->searchRooms($_GET['location'],$_GET['checkin'],$_GET['checkout'],$_GET['guests']);
+   }
 
+   if(isset($_GET['bedroom']) && isset($_GET['bathroom']) && isset($_GET['guests'])){
+    $searchroom = $room->searchRooms2($_GET['bedroom'],$_GET['bathroom'],$_GET['guests']);
+   }
+  
+  if(empty($searchroom)){?>
+          <div class="booking-1">
+                <p>Sorry, there is no data for this particular search but you can check out the ones we have</p>
+              </div>
+        <?php }?>
+
+  <div class="product-container">
+    
  
+  <?php 
+      
+
+       if(!empty($searchroom)){ 
+        foreach ($searchroom as $key => $value) {
+      ?>
+         <div class="product-div">
+          <div>
+            <img src="roomimage/<?php if(isset($value['room_image'])){
+              echo $value['room_image'];
+            }
+            ?>" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone"><?php echo $value['room_name'];?></p>
+               <p class="ptwo"><?php echo $value['room_location'];?></p> 
+             </div>
+            <a href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka"><button>View</button></a>
+          </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_bedrooms'];?></span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_baths'];?></span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_guests'];?></span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span><?php $pricepernight = $value['price_per_night'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
+        </div>
+        <?php }}?>  
+        
+          <?php 
+           if(empty($searchroom)){
+              if(!empty($allrooms)){ 
+                foreach ($allrooms as $key => $value) {
+            ?>
+          <div class="product-div">
+          <div>
+            <img src="roomimage/<?php if(isset($value['room_image'])){
+              echo $value['room_image'];
+            }
+            ?>" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone"><?php echo $value['room_name'];?></p>
+               <p class="ptwo"><?php echo $value['room_location'];?></p> 
+             </div>
+            <a href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka"><button>View</button></a>
+          </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_bedrooms'];?></span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_baths'];?></span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_guests'];?></span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span><?php $pricepernight = $value['price_per_night'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
+        </div>
+          <?php }}}?>
+
+         
   </div>
 
  
@@ -859,31 +1010,78 @@ padding: 1em;
   let downinput2 = document.querySelector('#locationinput2');
   let numinput = document.querySelector('#numinput');
   let numinput2 = document.querySelector('#numinput2');
+  let numinput3 = document.querySelector('#numinput3');
   let locationone = document.querySelector('#locations');
   let locationtwo = document.querySelector('#locations2');
   let locationthree = document.querySelector('#locations3');
   let locationfour = document.querySelector('#locations4');
+  let locationfive = document.querySelector('#locations5');
   let checkinput =  document.querySelector('.form__div #checkinput');
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
-  let submit =  document.querySelector('.formdiv2 #submit');
-  let form =  document.querySelector('#secondform');
+  let submit =  document.querySelector('.form__div #submit');
+  let form1 =  document.querySelector('#form1');
+  let allinputs = form1.querySelectorAll('.form input');
+  let form2 =  document.querySelector('#form2');
+  let allinputs2 = form2.querySelectorAll('.form input');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
-  
-  form.onsubmit = (e) => {
+
+  form1.onsubmit = (e) => {
     e.preventDefault();
+//console.log(allinputs);
+    allinputs.forEach((element) => {
+        //console.log(element);
+       if(element.value == ""){
+         element.style.borderColor = "red";
+       } else {
+        element.style.borderColor = "black";
+       }
+   
+   })
+
+if(downinput.style.borderColor == "black" && checkinput.style.borderColor == "black" && checkinput2.style.borderColor == "black" && numinput.style.borderColor == "black"){
+    location.href = `search.php?location=${downinput.value}&checkin=${checkinput.value}&checkout=${checkinput2.value}&guests=${numinput.value}`;
+}
   }
-  
+
+  form2.onsubmit = (e) => {
+    e.preventDefault();
+//console.log(allinputs);
+    allinputs2.forEach((element) => {
+        //console.log(element);
+       if(element.value == ""){
+         element.style.borderColor = "red";
+       } else {
+        element.style.borderColor = "black";
+       }
+   
+   })
+
+if(locationinput2.style.borderColor == "black" && numinput3.style.borderColor == "black" && numinput2.style.borderColor == "black"){
+    location.href = `search.php?bedroom=${locationinput2.value}&bathroom=${numinput2.value}&guests=${numinput3.value}`;
+}
+  }
+
+
+
+  downinput.readOnly = true;
+  downinput2.readOnly = true;
+  numinput.readOnly = true;
+  numinput2.readOnly = true;
+  numinput3.readOnly = true;
+  checkinput.readOnly = true;
+  checkinput2.readOnly = true;
   
 
   window.addEventListener('click', function(e){   
-  if (downinput.contains(e.target)  || downinput2.contains(e.target) || numinput.contains(e.target) ||  numinput2.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
+  if (downinput.contains(e.target) || downinput2.contains(e.target) || numinput.contains(e.target) || numinput2.contains(e.target) || numinput3.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
     // Clicked in box
   } else{
     locationone.style.display = "none";
     locationtwo.style.display = "none";
     locationthree.style.display = "none";
     locationfour.style.display = "none";
+    locationfive.style.display = "none";
   }
 });
     
@@ -892,49 +1090,66 @@ padding: 1em;
     locationtwo.style.display = "none";
     locationthree.style.display = "none";
     locationfour.style.display = "none";
+    locationfive.style.display = "none";
     datecontainer.style.display = "none";
     datecontainer2.style.display = "none";
   }
 
   downinput2.onclick = () => {
-    locationthree.style.display = "block";
-    locationtwo.style.display = "none";
     locationone.style.display = "none";
+    locationtwo.style.display = "none";
+    locationthree.style.display = "block";
     locationfour.style.display = "none";
+    locationfive.style.display = "none";
     datecontainer.style.display = "none";
     datecontainer2.style.display = "none";
   }
 
+  numinput2.onclick = () => {
+    locationone.style.display = "none";
+    locationtwo.style.display = "none";
+    locationthree.style.display = "none";
+    locationfour.style.display = "block";
+    locationfive.style.display = "none";
+    datecontainer.style.display = "none";
+    datecontainer2.style.display = "none";
+  }
 
- 
-
+  numinput3.onclick = () => {
+    locationone.style.display = "none";
+    locationtwo.style.display = "none";
+    locationthree.style.display = "none";
+    locationfour.style.display = "none";
+    locationfive.style.display = "block";
+    datecontainer.style.display = "none";
+    datecontainer2.style.display = "none";
+  }
 
   numinput.onclick = () => {
     locationtwo.style.display = "block";
     locationone.style.display = "none";
     locationthree.style.display = "none";
     locationfour.style.display = "none";
+    locationfive.style.display = "none";
     datecontainer.style.display = "none";
     datecontainer2.style.display = "none";
   }
 
-  numinput2.onclick = () => {
-    locationfour.style.display = "block";
-    locationone.style.display = "none";
-    locationtwo.style.display = "none";
-    locationthree.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-
-  submit.addEventListener('click',function(){
-    location.href = "lastbooking.html";
-  });
   
 
   
 
- 
+   let optionclick = document.getElementsByName('category');
+  
+   //console.log(document.querySelector('.form__div #locationinput').value)
+   
+   optionclick.forEach((element) => {
+    element.onclick= () =>{
+      document.querySelector('#locationinput').value
+                        = element.value;
+      locationone.style.display = "none";
+    }
+   })
 
    let optionclick3 = document.getElementsByName('category2');
   
@@ -954,20 +1169,6 @@ padding: 1em;
   
   optionclick4.forEach((element) => {
    element.onclick= () =>{
-     document.querySelector('#locationinput').value
-                       = element.value;
-     locationone.style.display = "none";
-   }
-  })
-
-
-  let optionclick5 = document.getElementsByName('numbers');
-  //console.log(optionclick5);
-  
-  //console.log(document.querySelector('.form__div #locationinput').value)
-  
-  optionclick5.forEach((element) => {
-   element.onclick= () =>{
      document.querySelector('#numinput2').value
                        = element.value;
      locationfour.style.display = "none";
@@ -975,7 +1176,17 @@ padding: 1em;
   })
 
 
-
+  let optionclick5 = document.getElementsByName('number3');
+  
+  //console.log(document.querySelector('.form__div #locationinput').value)
+  
+  optionclick5.forEach((element) => {
+   element.onclick= () =>{
+     document.querySelector('#numinput3').value
+                       = element.value;
+     locationfive.style.display = "none";
+   }
+  })
 
 
    let optionclick2 = document.getElementsByName('number');
@@ -1008,7 +1219,7 @@ padding: 1em;
     "November",
     "December"
    ];
-    checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    checkinput.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date');
 
 let monthValue = document.querySelector('.date h1');
@@ -1017,7 +1228,7 @@ let monthValue = document.querySelector('.date h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
     checkinput.value = dateval;
     datecontainer.style.display = "none";
     // console.log(dateval);
@@ -1041,7 +1252,7 @@ let monthValue = document.querySelector('.date h1');
     "November",
     "December"
    ];
-    checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    checkinput2.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date2');
 
 let monthValue = document.querySelector('.date2 h1');
@@ -1050,7 +1261,7 @@ let monthValue = document.querySelector('.date2 h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
     checkinput2.value = dateval;
     datecontainer2.style.display = "none";
     // console.log(dateval);
@@ -1210,6 +1421,8 @@ let monthValue = document.querySelector('.date2 h1');
     locationtwo.style.display = "none";
     locationone.style.display = "none";
     locationthree.style.display = "none";
+    locationfour.style.display = "none";
+    locationfive.style.display = "none";
     datecontainer2.style.display = "none";
   }
 
@@ -1218,6 +1431,8 @@ let monthValue = document.querySelector('.date2 h1');
     locationtwo.style.display = "none";
     locationone.style.display = "none";
     locationthree.style.display = "none";
+    locationfour.style.display = "none";
+    locationfive.style.display = "none";
     datecontainer.style.display = "none";
   }
 

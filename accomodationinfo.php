@@ -1124,6 +1124,7 @@ border-radius: 18.68px;
         <p class="psecond"><?php echo $value['room_location'];?></p>
         <p class="pthird"><?php echo $value['description'];?></p>
         <form action="" class="form">
+        <input type="hidden" name="" id="uniqueinput" class="form__input"  value="<?php echo $value['unique_id'];?>">
             <div class="flex-div">
               <div class="form__div">
                 <input type="text" name="" id="checkinput" class="form__input first" placeholder="" value="<?php echo $value['check_in_date'];?>">
@@ -1145,44 +1146,44 @@ border-radius: 18.68px;
                 <div class="select-container">
                   <div name="" id="locations" class="active">
                     <div class="option">
-                      <input type="radio" class="radio" id="Billingham" name="category" value="1 Guest">
-                      <label for="Billingham">1 Guest</label>
+                      <input type="radio" class="radio" id="Billingham" name="category" value="1-Guest">
+                      <label for="Billingham">1-Guest</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Darlington" name="category" value="2 Guests">
-                      <label for="Darlington">2 Guests</label>
+                      <input type="radio" class="radio" id="Darlington" name="category" value="2-Guests">
+                      <label for="Darlington">2-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Guisborough" name="category" value="3 Guests">
-                      <label for="Guisborough">3 Guests</label>
+                      <input type="radio" class="radio" id="Guisborough" name="category" value="3-Guests">
+                      <label for="Guisborough">3-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Hartlepool" name="category" value="4 Guests">
-                      <label for="Hartlepool">4 Guests</label>
+                      <input type="radio" class="radio" id="Hartlepool" name="category" value="4-Guests">
+                      <label for="Hartlepool">4-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Middlesborough" name="category" value="5 Guests">
-                      <label for="Middlesborough">5 Guests</label>
+                      <input type="radio" class="radio" id="Middlesborough" name="category" value="5-Guests">
+                      <label for="Middlesborough">5-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Peterborough" name="category" value="6 Guests">
-                      <label for="Peterborough">6 Guests</label>
+                      <input type="radio" class="radio" id="Peterborough" name="category" value="6-Guests">
+                      <label for="Peterborough">6-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Redcar" name="category" value="7 Guests">
-                      <label for="Redcar">7 Guests</label>
+                      <input type="radio" class="radio" id="Redcar" name="category" value="7-Guests">
+                      <label for="Redcar">7-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="Stockton" name="category" value="8 Guests">
-                      <label for="Stockton">8 Guests</label>
+                      <input type="radio" class="radio" id="Stockton" name="category" value="8-Guests">
+                      <label for="Stockton">8-Guests</label>
                     </div>
                     <div class="option">
-                      <input type="radio" class="radio" id="West Kingsdown" name="category" value="9 Guests">
-                      <label for="West Kingsdown">9 Guests</label>
+                      <input type="radio" class="radio" id="West Kingsdown" name="category" value="9-Guests">
+                      <label for="West Kingsdown">9-Guests</label>
                     </div>
                     <div class="option">
-                        <input type="radio" class="radio" id="West Kingsdown1" name="category" value="10 Guests">
-                        <label for="West Kingsdown1">10 Guests</label>
+                        <input type="radio" class="radio" id="West Kingsdown1" name="category" value="10-Guests">
+                        <label for="West Kingsdown1">10-Guests</label>
                       </div>
                   </div>
               </div>
@@ -1393,16 +1394,82 @@ border-radius: 18.68px;
   let locationone = document.querySelector('#locations');
   let checkinput =  document.querySelector('.form__div #checkinput');
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
+  let uniqueinput =  document.querySelector('#uniqueinput');
   let submit =  document.querySelector('.form__div #submit');
   let form =  document.querySelector('.form');
+  let allinputs = form.querySelectorAll('.form input');
+
+ 
 
   form.onsubmit = (e) => {
     e.preventDefault();
+    allinputs.forEach((element) => {
+        //console.log(element);
+       if(element.value == ""){
+         element.style.borderColor = "red";
+       } else {
+        element.style.borderColor = "black";
+       }
+   
+   })
+
+
+   let val1 = downinput.value;
+   let val2 = checkinput.value;
+   let val3 = checkinput2.value;
+   let downinputvalue = val1[0];
+   let date1 = new Date(checkinput.value);
+   let date2 = new Date(checkinput2.value);
+   //console.log(date1);
+
+     // To calculate the time difference of two dates 
+     var Difference_In_Time = date2.getTime() - date1.getTime(); 
+      
+      // To calculate the no. of days between two dates 
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+      let nights = Math.round(Difference_In_Days) - 1;
+    
+ 
+   
+  
+  //  let checkinvalue = val2[0]+val2[1];
+  //  let checkoutvalue = val3[0]+val3[1];
+  //  let dash = "-";
+  //  if(checkinvalue.includes(dash)){
+  //   let checkinvalue = val2[0];
+  //   //console.log(checkinvalue);
+  //  } else {
+  //   let checkinvalue = val2[0]+val2[1];
+  //   //console.log(checkinvalue)
+  //  }
+
+  //  if(checkoutvalue.includes(dash)){
+  //   let checkoutvalue = val3[0];
+  //   //console.log(checkoutvalue);
+  //  } else {
+  //   let checkoutvalue = val3[0]+val3[1];
+  //   //console.log(checkoutvalue);
+  //  }
+
+  //  let checkval = parseInt(checkinvalue);
+  //  let checkval2 = parseInt(checkoutvalue);
+
+
+   //console.log(nights);
+   
+   
+   
+
+if(downinput.style.borderColor == "black"  && checkinput.style.borderColor == "black" && checkinput2.style.borderColor == "black"){
+    location.href = `booking.php?guestno=${downinputvalue}&checkin=${checkinput.value}&checkout=${checkinput2.value}&nights=${nights}&unique=${uniqueinput.value}`;
+}
   }
 
-  submit.addEventListener('click',function(){
-    location.href = "booking.html";
-  });
+ 
+
+  // submit.addEventListener('click',function(){
+  //   location.href = "booking.html";
+  // });
   
   downinput.readOnly = true;
   checkinput.readOnly = true;
@@ -1420,8 +1487,6 @@ border-radius: 18.68px;
     
   downinput.onclick = () => {
     locationone.style.display = "block";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
   }
 
    let optionclick = document.getElementsByName('category');

@@ -1,9 +1,12 @@
+<?php 
+include "projectdetails.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Room</title>
+    <title>Update Room</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -824,38 +827,52 @@ line-height: 31.7px;
 
  <!-- Main -->
  <div class="main">
+ <?php 
+       $room = new User;
+       $allrooms = $room->selectRoomDetails($_GET['id']);
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
      <!-- Booking Header -->
      <div class="booking-container-2">
-        <p>Admin Page</p>
+        <p><?php if(isset($value['room_name'])){
+                            echo $value['room_name'];
+                        }?> Room</p>
      </div>
 
      <!-- Booking Details -->
      <div class="booking-container">
         <div class="booking-container-div">
-              <div class="booking-child-1">
-                <p>All Rooms</p>
-                <button><a href="allroomspage.php">all rooms</a></button>
-              </div>
+        
             <div class="booking-child-2">
-                <p>Room Details</p>
+                <p>Update Room</p>
                 <form action="" id="roomform">
                     <div class="form--div">
-                        <input type="text" name="roomname" id="roomname" placeholder="Enter room name">
+                        <input type="text" name="roomname" id="roomname" placeholder="Enter room name" value="<?php if(isset($value['room_name'])){
+                            echo $value['room_name'];
+                        }?>">
                     <label for="roomname">Room Name</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="text" name="roomlocation" id="roomlocation" placeholder="Enter room location">
+                        <input type="text" name="roomlocation" id="roomlocation" placeholder="Enter room location" value="<?php if(isset($value['room_location'])){
+                            echo $value['room_location'];
+                        }?>">
                     <label for="roomlocation">Room Location</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="number" name="bedroomno" id="bedroomno" placeholder="Enter no of bedrooms">
+                        <input type="number" name="bedroomno" id="bedroomno" placeholder="Enter no of bedrooms" value="<?php if(isset($value['no_of_bedrooms'])){
+                            echo $value['no_of_bedrooms'];
+                        }?>">
                     <label for="bedroomno">No. of Bedrooms</label>
                     </div>
 
                     <div class="form--div">
-                      <input type="text" name="checkin" id="checkin" placeholder="" value="">
+                      <input type="text" name="checkin" id="checkin" placeholder="" value="<?php if(isset($value['check_in_date'])){
+                            echo $value['check_in_date'];
+                        }?>">
                   <label for="checkin">Check In</label>
                   <div class="datecontainer">
                     <div class="calendar">
@@ -926,7 +943,9 @@ line-height: 31.7px;
                   </div>
 
                   <div class="form--div">
-                    <input type="text" name="checkout" id="checkout" placeholder="" value="">
+                    <input type="text" name="checkout" id="checkout" placeholder="" value="<?php if(isset($value['check_out_date'])){
+                            echo $value['check_out_date'];
+                        }?>">
                 <label for="checkout">Check Out</label>
                 <div class="datecontainer2">
                   <div class="calendar2">
@@ -998,52 +1017,72 @@ line-height: 31.7px;
                 </div>
 
                     <div class="form--div">
-                        <input type="number" name="bathroomno" id="bathroomno" placeholder="Enter no of bathrooms">
+                        <input type="number" name="bathroomno" id="bathroomno" placeholder="Enter no of bathrooms" value="<?php if(isset($value['no_of_baths'])){
+                            echo $value['no_of_baths'];
+                        }?>">
                     <label for="">No. of Baths</label>
                     </div>
 
                     <div class="form--div">
-                      <input type="text" name="description" id="description" placeholder="Enter room description">
+                      <input type="text" name="description" id="description" placeholder="Enter room description" value="<?php if(isset($value['description'])){
+                            echo $value['description'];
+                        }?>">
                   <label for="description">Description</label>
                   </div>
 
                           <div class="form--div">
-                            <input type="text" name="featureone" id="featureone" placeholder="Enter feature one">
+                            <input type="text" name="featureone" id="featureone" placeholder="Enter feature one" value="<?php if(isset($value['feature_one'])){
+                            echo $value['feature_one'];
+                        }?>">
                         <label for="featureone">Feature One</label>
                         </div>
 
                         <div class="form--div">
-                          <input type="text" name="featuretwo" id="featuretwo" placeholder="Enter feature two">
+                          <input type="text" name="featuretwo" id="featuretwo" placeholder="Enter feature two" value="<?php if(isset($value['feature_two'])){
+                            echo $value['feature_two'];
+                        }?>">
                       <label for="featuretwo">Feature Two</label>
                       </div>
 
                       <div class="form--div">
-                        <input type="text" name="featurethree" id="featurethree" placeholder="Enter feature three">
+                        <input type="text" name="featurethree" id="featurethree" placeholder="Enter feature three" value="<?php if(isset($value['feature_three'])){
+                            echo $value['feature_three'];
+                        }?>">
                     <label for="featurethree">Feature Three</label>
                     </div>
 
                     <div class="form--div">
-                      <input type="text" name="featurefour" id="featurefour" placeholder="Enter feature four">
+                      <input type="text" name="featurefour" id="featurefour" placeholder="Enter feature four" value="<?php if(isset($value['feature_four'])){
+                            echo $value['feature_four'];
+                        }?>">
                   <label for="featurefour">Feature Four</label>
                   </div>
 
                   <div class="form--div">
-                    <input type="text" name="featurefive" id="featurefive" placeholder="Enter feature five">
+                    <input type="text" name="featurefive" id="featurefive" placeholder="Enter feature five" value="<?php if(isset($value['feature_five'])){
+                            echo $value['feature_five'];
+                        }?>">
                 <label for="featurefive">Feature Five</label>
                 </div>
 
                 <div class="form--div">
-                  <input type="text" name="featuresix" id="featuresix" placeholder="Enter feature six">
+                  <input type="text" name="featuresix" id="featuresix" placeholder="Enter feature six" value="<?php if(isset($value['feature_six'])){
+                            echo $value['feature_six'];
+                        }?>">
               <label for="featuresix">Feature Six</label>
               </div>
 
                     <div class="form--div">
-                        <input type="number" name="guestno" id="guestno" placeholder="Enter guest no">
+                        <input type="number" name="guestno" id="guestno" placeholder="Enter guest no" value="<?php if(isset($value['no_of_guests'])){
+                            echo $value['no_of_guests'];
+                        }?>">
                     <label for="guestno">No. of Guests</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="number" name="pricepernight" id="pricepernight" placeholder="Enter price per night">
+                        <input type="number" name="pricepernight" id="pricepernight" placeholder="Enter price per night" value="<?php if(isset($value['price_per_night'])){
+                            echo $value['price_per_night'];
+                        }?>">
                     <label for="pricepernight">Price Per Night</label>
                     </div>
 
@@ -1082,12 +1121,16 @@ line-height: 31.7px;
                     <label for="roomimage6">Room Image 6</label>
                     </div>
 
+                    <input type="hidden" name="unique" id="unique"  value="<?php if(isset($value['unique_id'])){
+                            echo $value['unique_id'];
+                        }?>" >
+
                     <div class="button-flex">
                         <!-- <button class="first-button">back</button> -->
                         <div style="display: none;">
                             <img src="images/loading.svg" alt="" class="loading-img">
                         </div>
-                    <button type="submit" id="submit">create room</button>
+                    <button type="submit" id="submit">update room</button>
                     </div>
 
                     <div class="error">
@@ -1096,7 +1139,7 @@ line-height: 31.7px;
                 </form>
             </div>
     </div>
-
+<?php }}?>
   </div>
 
   
@@ -1110,7 +1153,7 @@ line-height: 31.7px;
     <div>
       <img src="images/haven_logo3.png" alt="">
     </div>
-    <p>Room Created Successfully
+    <p>Room Updated Successfully
     </p>
   </div>
  
@@ -1217,8 +1260,8 @@ line-height: 31.7px;
     e.preventDefault();
     // roomsubmit.innerHTML = "";
     // roomsubmit.appendChild(document.querySelector('.loading-img'))
-    checkNullInputs();
-    insertGroup();
+    // checkNullInputs();
+
     // roomsubmit.innerHTML = "create room";
   }
 
@@ -1261,7 +1304,7 @@ line-height: 31.7px;
     "November",
     "December"
    ];
-    checkinput.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
+    //checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date');
 
 let monthValue = document.querySelector('.date h1');
@@ -1270,7 +1313,7 @@ let monthValue = document.querySelector('.date h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
+    let dateval = datevalue + " " +monthval +  " " + yearvalue  
     checkinput.value = dateval;
     datecontainer.style.display = "none";
     // console.log(dateval);
@@ -1294,7 +1337,7 @@ let monthValue = document.querySelector('.date h1');
     "November",
     "December"
    ];
-    checkinput2.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
+    //checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date2');
 
 let monthValue = document.querySelector('.date2 h1');
@@ -1303,7 +1346,7 @@ let monthValue = document.querySelector('.date2 h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
+    let dateval = datevalue + " " +monthval +  " " + yearvalue  
     checkinput2.value = dateval;
     datecontainer2.style.display = "none";
     // console.log(dateval);
@@ -1477,7 +1520,7 @@ let monthValue = document.querySelector('.date2 h1');
 
   function insertGroup(){
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","inserters/uploadroomdata.php",true);
+    xhr.open("POST","inserters/updateroomdata.php",true);
     xhr.onload = () => {
       if(xhr.readyState === XMLHttpRequest.DONE){
         if(xhr.status === 200) {
@@ -1492,7 +1535,7 @@ let monthValue = document.querySelector('.date2 h1');
             error.style.display = "none";
              console.log(data);
            } else {
-               //console.log(data);
+               console.log(data);
                error.style.display = "flex";
                error.textContent = data;
            }
@@ -1503,7 +1546,9 @@ let monthValue = document.querySelector('.date2 h1');
     xhr.send(formData);
   }
 
-  
+  roomsubmit.addEventListener('click', () => {
+    insertGroup();
+  })
 
 
 

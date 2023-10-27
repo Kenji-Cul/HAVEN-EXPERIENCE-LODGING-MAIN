@@ -1,9 +1,13 @@
+<?php 
+include "projectdetails.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
+    <title>All Rooms</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -33,12 +37,54 @@ a{
   z-index: 3000;
 }
 
+.product-div .product-content{
+    position: absolute;
+    bottom: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: row;
+    width: 100%;
+}
+
 
 
 .product-content,.icon-content,.content-2{
   width: 100%;
   background-color: #CBB6A7;
   padding: 15px 0;
+}
+
+.product-content button{
+    display: flex;
+width: 100px;
+height: 25px;
+border: none;
+color: #ffffff;
+text-transform: uppercase;
+font-size: 13px;
+cursor: pointer;
+font-style: normal;
+font-weight: 600;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 6px;
+background: #519188;
+box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.product-content .delete{
+    background-color: red;
+}
+
+.product-div .action-btn{
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-div .icon-content{
@@ -89,7 +135,7 @@ a{
       
 body{
     overflow-x:hidden;
-    height: 250vh;
+    height: 150vh;
 }
         .head-container{
             padding-top: 20px;
@@ -394,6 +440,19 @@ letter-spacing: 0.15px;
     margin-top: 3em;
 }
 
+.booking-child-2 .error{
+  width: 70%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 5px 0;
+  background-color: red;
+  color: #fff;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
 
 
 .booking-child-1 p, .booking-child-2 p{
@@ -425,7 +484,7 @@ padding: 14px;
 border: 1px solid #32475C;
 }
 
-.booking-child-1 form button{
+.booking-child-1 button{
     display: flex;
   align-items: center;
   justify-content: center;
@@ -438,6 +497,11 @@ border: 1px solid #32475C;
   font-size: 14px;
   text-transform: uppercase;
   box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.booking-child-1 button a{
+  color: #fff;
+  text-decoration: none;
 }
 
 .booking-child-2 form button{
@@ -503,6 +567,48 @@ border: 1px solid #32475C;
   background-color: #fff;
   padding: 0 2px;
 }
+
+.successmodal{
+  position: absolute;
+  top: 95em;
+ width: 30em;
+  bottom: -10em;
+  background: #fff;
+  height: 40em;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5em;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.successmodal p{
+font-size: 30px;
+font-style: normal;
+font-weight: 400;
+line-height: 31.7px;
+}
+
+.successmodal .modalclosediv{
+  width: 90%;
+   display: flex; 
+   align-items: right;
+   justify-content: center;
+   position: absolute;
+   top: 1em;
+   cursor: grab;
+}
+
+.successmodal .modalclose{
+  position: absolute;
+  right: 0;
+  font-size: 80px;
+}
+
+
+
 
 /* Mobile Screen Styling */
 @media only screen and (max-width: 800px){
@@ -705,6 +811,29 @@ background: var(--light-background-paper, #FFF);
 box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71, 92, 0.04), 0px 2px 9px 0px rgba(50, 71, 92, 0.06);
 }
 
+.successmodal{
+  position: absolute;
+  top: 90em;
+ width: 20em;
+  bottom: -10em;
+  background: #fff;
+  height: 40em;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5em;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.successmodal p{
+font-size: 19px;
+font-style: normal;
+font-weight: 400;
+line-height: 31.7px;
+}
+
 }
 
     </style>
@@ -727,7 +856,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
           <img src="images/close.png" alt="" class="navclose">
         </div>
         <li class="home-link"><a href="index.php">Home</a></li>
-        <li ><a href="about.php">About</a></li>                                                                                                     
+        <li ><a href="about.html">About</a></li>                                                                                                     
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
         <li><a href="accomodation.html">Accomodation</a></li>
@@ -743,117 +872,78 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
  <div class="main">
      <!-- Booking Header -->
      <div class="booking-container-2">
-        <p>Book Globe Apartments</p>
-        <a href="#"><button>Back</button></a>
+        <p>All Rooms Page</p>
      </div>
 
-     <!-- Booking Details -->
-     <div class="booking-container">
-        <div class="booking-container-div">
-            <div class="booking-child-1">
-                <p>Voucher Code</p>
-                <form action="">
-                    <input type="text" name="vouchercode" id="" placeholder="Enter Voucher Code">
-                    <button type="submit">confirm booking</button>
-                </form>
-            </div>
-            <div class="booking-child-2">
-                <p>Guest Details</p>
-                <form action="">
-                    <div class="form--div">
-                        <input type="text" name="vouchercode" id="" placeholder="Enter title">
-                    <label for="">Title</label>
-                    </div>
 
-                    <div class="form--div">
-                        <input type="text" name="firstname" id="" placeholder="Enter your first name">
-                    <label for="">First Name</label>
-                    </div>
+     <div class="product-container">
+      <?php 
+       $room = new User;
+       $allrooms = $room->selectAllRooms();
 
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your surname">
-                    <label for="">Surname</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your email">
-                    <label for="">Email</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your telephone">
-                    <label for="">Telephone</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your mobile">
-                    <label for="">Mobile</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your addrress">
-                    <label for="">Address</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your city">
-                    <label for="">City</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your postcode">
-                    <label for="">Postcode</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your postcode">
-                    <label for="">Country of Residence</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your postcode">
-                    <label for="">Arrival Time</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="surname" id="" placeholder="Enter your postcode">
-                    <label for="">Comments</label>
-                    </div>
-
-                    <div class="button-flex">
-                        <button class="first-button">back</button>
-                    <button type="submit">confirm booking</button>
-                    </div>
-                </form>
-            </div>
-    </div>
-
-    <div class="booking-container-div-2">
-            <p class="booking-p">Your Booking Details</p>
-        <div>
-            <p class="booking-p-2">Flat 3 - The Globe Apartments</p>
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
+         <div class="product-div">
+          <div>
+            <img src="roomimage/<?php if(isset($value['room_image'])){
+              echo $value['room_image'];
+            }
+            ?>" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone"><?php echo $value['room_name'];?></p>
+               <p class="ptwo"><?php echo $value['room_location'];?></p> 
+             </div>
+             <div class="action-btn">
+             <a href="updateproduct.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka"><button>Update</button></a>
+             <form action="" id="delete-form">
+             <input type="hidden" name="unique" id="unique"  value="<?php if(isset($value['unique_id'])){
+                            echo $value['unique_id'];
+                        }?>" >
+             <button class="delete" type="submit">Delete</button>
+             </form>
             
-            <div class="booking-flex">
-                <p>Check In</p>
-                <p>Tuesday, 5 December,2023</p>
+             </div>
+            
+          </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_bedrooms'];?></span> Bedrooms</p>
             </div>
-            <div class="booking-flex">
-                <p>Check Out</p>
-                <p>Tuesday, 5 December,2023</p>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_baths'];?></span> Baths</p>
             </div>
-            <div class="booking-flex">
-                <p>Occupancy</p>
-                <p>$10,000</p>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_guests'];?></span> Guests</p>
             </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span><?php $pricepernight = $value['price_per_night'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
         </div>
-        <div class="booking-flex-2">
-            <p>Grand Total</p>
-            <p>$10,000</p>
-        </div>
+        <?php }}?>
+
+  
     </div>
-     </div>
+    
   </div>
 
+  
+
+
+  
  
    <!-- Footer -->
    <div class="footer">
@@ -887,7 +977,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
       <p class="head-2">Pages</p>
      <ul>
       <li><a href="index.php">Home</a></li>
-      <li><a href="about.php">About</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
       <li><a href="accomodation.html">Accomodation</a></li>
@@ -928,302 +1018,49 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
   }
   }
 
- 
-  let downinput = document.querySelector('#locationinput');
-  let downinput2 = document.querySelector('#locationinput2');
-  let numinput = document.querySelector('#numinput');
-  let numinput2 = document.querySelector('#numinput2');
-  let locationone = document.querySelector('#locations');
-  let locationtwo = document.querySelector('#locations2');
-  let locationthree = document.querySelector('#locations3');
-  let locationfour = document.querySelector('#locations4');
-  let checkinput =  document.querySelector('.form__div #checkinput');
-  let checkinput2 =  document.querySelector('.form__div #checkinput2');
-  let submit =  document.querySelector('.formdiv2 #submit');
-  let form =  document.querySelector('#secondform');
-  let datecontainer = document.querySelector('.datecontainer');
-  let datecontainer2 = document.querySelector('.datecontainer2');
-  
-  form.onsubmit = (e) => {
+
+  let deletebtn =  document.querySelector('#delete-form .delete');
+  let deleteform =  document.querySelector('#delete-form');
+
+   
+  deleteform.onsubmit = (e) => {
     e.preventDefault();
+   
   }
   
 
-  window.addEventListener('click', function(e){   
-  if (downinput.contains(e.target)  || downinput2.contains(e.target) || numinput.contains(e.target) ||  numinput2.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
-    // Clicked in box
-  } else{
-    locationone.style.display = "none";
-    locationtwo.style.display = "none";
-    locationthree.style.display = "none";
-    locationfour.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-});
-    
-  downinput.onclick = () => {
-    locationone.style.display = "block";
-    locationtwo.style.display = "none";
-    locationthree.style.display = "none";
-    locationfour.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-
-  downinput2.onclick = () => {
-    locationthree.style.display = "block";
-    locationtwo.style.display = "none";
-    locationone.style.display = "none";
-    locationfour.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
+  function deleteRoom(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","inserters/deleteroomdata.php",true);
+    xhr.onload = () => {
+      if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200) {
+          let data = xhr.response;
+           if(data === "success"){
+            //console.log("uploaded");
+              window.location.reload();
+             console.log(data);
+           } else {
+               console.log(data);
+           }
+        }
+      }
+    }
+    let formData = new FormData(deleteform);
+    xhr.send(formData);
   }
 
-
+  deletebtn.addEventListener('click', () => {
+    deleteRoom();
+  })
  
-
-
-  numinput.onclick = () => {
-    locationtwo.style.display = "block";
-    locationone.style.display = "none";
-    locationthree.style.display = "none";
-    locationfour.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-
-  numinput2.onclick = () => {
-    locationfour.style.display = "block";
-    locationone.style.display = "none";
-    locationtwo.style.display = "none";
-    locationthree.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-
-  submit.addEventListener('click',function(){
-    location.href = "lastbooking.html";
-  });
-  
-
-  
-
  
-
-   let optionclick3 = document.getElementsByName('category2');
   
-   //console.log(document.querySelector('.form__div #locationinput').value)
-   
-   optionclick3.forEach((element) => {
-    element.onclick= () =>{
-      document.querySelector('#locationinput2').value
-                        = element.value;
-      locationthree.style.display = "none";
-    }
-   })
-
-   let optionclick4 = document.getElementsByName('number2');
-  
-  //console.log(document.querySelector('.form__div #locationinput').value)
-  
-  optionclick4.forEach((element) => {
-   element.onclick= () =>{
-     document.querySelector('#locationinput').value
-                       = element.value;
-     locationone.style.display = "none";
-   }
-  })
-
-
-  let optionclick5 = document.getElementsByName('numbers');
-  //console.log(optionclick5);
-  
-  //console.log(document.querySelector('.form__div #locationinput').value)
-  
-  optionclick5.forEach((element) => {
-   element.onclick= () =>{
-     document.querySelector('#numinput2').value
-                       = element.value;
-     locationfour.style.display = "none";
-   }
-  })
-
-
-
-
-
-   let optionclick2 = document.getElementsByName('number');
-   //console.log(document.querySelector('.form__div #locationinput').value)
-   
-   optionclick2.forEach((element) => {
-    element.onclick= () =>{
-      document.querySelector('#numinput').value
-                        = element.value;
-        locationtwo.style.display = "none";
-    }
-   })
   
 
-   //The Date Programming
-   const date = new Date();
-
-   const renderCalendar = () => {
-    date.setDate(1);
-   const monthDays = document.querySelector('.days');
-   const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const firstDayIndex = date.getDay();
-   const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
-
-   const nextDays = 7 - lastDayIndex - 1;
-   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
-
-   document.querySelector('.date h1').innerHTML = months[date.getMonth()];
-   document.querySelector('.date p').innerHTML = new Date().toDateString();
-   let days = "";
-
-   for(let x = firstDayIndex; x >0; x--){
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-   }
-   
-   for(let i =1; i<=lastDay; i++){
-    if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today present-date">${i}</div>`; 
-    }else {
-      days+=`<div class="present-date">${i}</div>`;
-    }
-
-
-    monthDays.innerHTML = days;
-     
-   }
-
-   for(let j = 1; j <= nextDays; j++){
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
-   }
-   //console.log(date);
-
-   }
-
-
-   const renderCalendar2 = () => {
-    date.setDate(1);
-   const monthDays2 = document.querySelector('.days2');
-   const lastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const prevLastDay = new Date(date.getFullYear(),date.getMonth() + 1,0).getDate();
-   const firstDayIndex = date.getDay();
-   const lastDayIndex = new Date(date.getFullYear(),date.getMonth() + 1,0).getDay();
-
-   const nextDays = 7 - lastDayIndex - 1;
-   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
-
-   document.querySelector('.date2 h1').innerHTML = months[date.getMonth()];
-   document.querySelector('.date2 p').innerHTML = new Date().toDateString();
-   let days = "";
-
-   for(let x = firstDayIndex; x >0; x--){
-    days += `<div class="prev-date2">${prevLastDay - x + 1}</div>`;
-   }
-   
-   for(let i =1; i<=lastDay; i++){
-    if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today2 present-date2">${i}</div>`; 
-    }else {
-      days+=`<div class="present-date2">${i}</div>`;
-    }
-
-
-    monthDays2.innerHTML = days;
-     
-   }
-
-   for(let j = 1; j <= nextDays; j++){
-    days += `<div class="next-date2">${j}</div>`;
-    monthDays2.innerHTML = days;
-   }
-   //console.log(date);
-
-   }
-
-
-
-  // days = document.querySelectorAll('.present-date');
-   //console.log(days)
-  //  days.forEach((element) => {
-  //    element.onclick = () => {
-  //     alert('me');
-  //    }
-  //      });
   
-   
-   document.querySelector('.prev').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar();
-   })
-
-   document.querySelector('.prev2').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar2();
-   })
-
-   document.querySelector('.next').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar();
-  })
-
-  document.querySelector('.next2').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar2();
-  })
-
-  renderCalendar();
-  renderCalendar2();
 
   
-  checkinput.onclick = () =>{
-    datecontainer.style.display = 'block';
-    locationtwo.style.display = "none";
-    locationone.style.display = "none";
-    locationthree.style.display = "none";
-    datecontainer2.style.display = "none";
-  }
-
-  checkinput2.onclick = () =>{
-    datecontainer2.style.display = 'block';
-    locationtwo.style.display = "none";
-    locationone.style.display = "none";
-    locationthree.style.display = "none";
-    datecontainer.style.display = "none";
-  }
-
   </script>
 </body>
 </html>

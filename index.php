@@ -666,16 +666,32 @@ include "projectdetails.php";
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
   let submit =  document.querySelector('.form__div #submit');
   let form =  document.querySelector('.form');
+  let allinputs = form.querySelectorAll('.form input');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
 
   form.onsubmit = (e) => {
     e.preventDefault();
+//console.log(allinputs);
+    allinputs.forEach((element) => {
+        //console.log(element);
+       if(element.value == ""){
+         element.style.borderColor = "red";
+       } else {
+        element.style.borderColor = "black";
+       }
+   
+   })
+
+if(downinput.style.borderColor == "black" && checkinput.style.borderColor == "black" && checkinput2.style.borderColor == "black" && numinput.style.borderColor == "black"){
+    location.href = `search.php?location=${downinput.value}&checkin=${checkinput.value}&checkout=${checkinput2.value}&guests=${numinput.value}`;
+}
+  
   }
 
-  submit.addEventListener('click',function(){
-    location.href = "search.html";
-  });
+
+
+
 
   downinput.readOnly = true;
   numinput.readOnly = true;
@@ -753,7 +769,7 @@ include "projectdetails.php";
     "November",
     "December"
    ];
-    checkinput.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    checkinput.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date');
 
 let monthValue = document.querySelector('.date h1');
@@ -762,7 +778,7 @@ let monthValue = document.querySelector('.date h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
     checkinput.value = dateval;
     datecontainer.style.display = "none";
     // console.log(dateval);
@@ -786,7 +802,7 @@ let monthValue = document.querySelector('.date h1');
     "November",
     "December"
    ];
-    checkinput2.value = new Date().getDate() + " " + months[date.getMonth()] + " "+ date.getFullYear();
+    checkinput2.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
     let todays = document.querySelectorAll('.present-date2');
 
 let monthValue = document.querySelector('.date2 h1');
@@ -795,7 +811,7 @@ let monthValue = document.querySelector('.date2 h1');
     let datevalue = element.innerHTML;
     let monthval = monthValue.innerHTML;
     let yearvalue = date.getFullYear();
-    let dateval = datevalue + " " +monthval +  " " + yearvalue  
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
     checkinput2.value = dateval;
     datecontainer2.style.display = "none";
     // console.log(dateval);

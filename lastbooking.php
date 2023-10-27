@@ -1,10 +1,14 @@
+<?php 
+include "projectdetails.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Room</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>Booking</title>
+    <link rel="stylesheet" href="css/index.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     
@@ -394,19 +398,6 @@ letter-spacing: 0.15px;
     margin-top: 3em;
 }
 
-.booking-child-2 .error{
-  width: 70%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  margin: 0 auto;
-  padding: 5px 0;
-  background-color: red;
-  color: #fff;
-  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
-}
-
 
 
 .booking-child-1 p, .booking-child-2 p{
@@ -438,7 +429,7 @@ padding: 14px;
 border: 1px solid #32475C;
 }
 
-.booking-child-1 button{
+.booking-child-1 form button{
     display: flex;
   align-items: center;
   justify-content: center;
@@ -451,11 +442,6 @@ border: 1px solid #32475C;
   font-size: 14px;
   text-transform: uppercase;
   box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
-}
-
-.booking-child-1 button a{
-  color: #fff;
-  text-decoration: none;
 }
 
 .booking-child-2 form button{
@@ -508,6 +494,19 @@ border: 1px solid #32475C;
   box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
 }
 
+.error{
+  width: 70%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 5px 0;
+  background-color: red;
+  color: #fff;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
 .booking-child-2 .form--div{
     position: relative;
     margin-top: 2em;
@@ -521,48 +520,6 @@ border: 1px solid #32475C;
   background-color: #fff;
   padding: 0 2px;
 }
-
-.successmodal{
-  position: absolute;
-  top: 95em;
- width: 30em;
-  bottom: -10em;
-  background: #fff;
-  height: 40em;
-  border-radius: 10px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 5em;
-  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
-}
-
-.successmodal p{
-font-size: 30px;
-font-style: normal;
-font-weight: 400;
-line-height: 31.7px;
-}
-
-.successmodal .modalclosediv{
-  width: 90%;
-   display: flex; 
-   align-items: right;
-   justify-content: center;
-   position: absolute;
-   top: 1em;
-   cursor: grab;
-}
-
-.successmodal .modalclose{
-  position: absolute;
-  right: 0;
-  font-size: 80px;
-}
-
-
-
 
 /* Mobile Screen Styling */
 @media only screen and (max-width: 800px){
@@ -765,29 +722,6 @@ background: var(--light-background-paper, #FFF);
 box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71, 92, 0.04), 0px 2px 9px 0px rgba(50, 71, 92, 0.06);
 }
 
-.successmodal{
-  position: absolute;
-  top: 90em;
- width: 20em;
-  bottom: -10em;
-  background: #fff;
-  height: 40em;
-  border-radius: 10px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 5em;
-  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
-}
-
-.successmodal p{
-font-size: 19px;
-font-style: normal;
-font-weight: 400;
-line-height: 31.7px;
-}
-
 }
 
     </style>
@@ -810,7 +744,7 @@ line-height: 31.7px;
           <img src="images/close.png" alt="" class="navclose">
         </div>
         <li class="home-link"><a href="index.php">Home</a></li>
-        <li ><a href="about.html">About</a></li>                                                                                                     
+        <li ><a href="about.php">About</a></li>                                                                                                     
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
         <li><a href="accomodation.html">Accomodation</a></li>
@@ -824,270 +758,122 @@ line-height: 31.7px;
 
  <!-- Main -->
  <div class="main">
+ <?php 
+       $room = new User;
+       $allrooms = $room->selectRoomDetails($_GET['id']);
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
      <!-- Booking Header -->
      <div class="booking-container-2">
-        <p>Admin Page</p>
+        <p><?php echo $value['room_name'];?></p>
+        <!-- <a href="#"><button>Back</button></a> -->
      </div>
 
      <!-- Booking Details -->
      <div class="booking-container">
         <div class="booking-container-div">
-              <div class="booking-child-1">
-                <p>All Rooms</p>
-                <button><a href="allroomspage.php">all rooms</a></button>
-              </div>
+            <!-- <div class="booking-child-1">
+                <p>Voucher Code</p>
+                <form action="">
+                    <input type="text" name="vouchercode" id="" placeholder="Enter Voucher Code">
+                    <button type="submit">confirm booking</button>
+                </form>
+            </div> -->
             <div class="booking-child-2">
-                <p>Room Details</p>
-                <form action="" id="roomform">
+                <p>Guest Details</p>
+                <form action="" id="secondform">
+                <input type="hidden" id="unique" name="uniquedate1" value="<?php $date = new DateTimeImmutable($value['check_in_date']);
+                echo $date->format('l jS \o\f F Y '), "\n";
+                //echo $value['check_in_date'];
+              ?>" >
+               <input type="hidden" id="unique1" name="uniquedate2" value="<?php  $date = new DateTimeImmutable($value['check_out_date']);
+                 echo $date->format('l jS \o\f F Y '), "\n";
+              ?>" >
+               <input type="hidden" id="unique2" name="uniquenights" value="<?php $date1 = strtotime($value['check_in_date']);
+                        $date2 = strtotime($value['check_out_date']);
+                        $diff = $date2 - $date1;
+                        $days = floor($diff / (60 * 60 * 24)) - 1;
+                        echo $days;
+              ?>" >
+               <input type="hidden" id="unique3" name="uniqueguestno" value="<?php  echo $_GET['gno'];
+              ?>" >
+               <input type="hidden" id="unique6" name="uniqueroom" value="<?php echo $value['room_name'];
+              ?>" >
+               <input type="hidden" id="unique4" name="uniqueprice" value="<?php $pricepernight = $_GET['p'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+              ?>" >
+               <input type="hidden" id="unique5" name="unique" value="<?php $uniqueid = rand(); 
+                echo $uniqueid;
+              ?>" >
                     <div class="form--div">
-                        <input type="text" name="roomname" id="roomname" placeholder="Enter room name">
-                    <label for="roomname">Room Name</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="text" name="roomlocation" id="roomlocation" placeholder="Enter room location">
-                    <label for="roomlocation">Room Location</label>
-                    </div>
-
-                    <div class="form--div">
-                        <input type="number" name="bedroomno" id="bedroomno" placeholder="Enter no of bedrooms">
-                    <label for="bedroomno">No. of Bedrooms</label>
-                    </div>
-
-                    <div class="form--div">
-                      <input type="text" name="checkin" id="checkin" placeholder="" value="">
-                  <label for="checkin">Check In</label>
-                  <div class="datecontainer">
-                    <div class="calendar">
-                      <div class="month">
-                        <i class="fas fa-angle-left prev"></i>
-                        <div class="date">
-                          <h1></h1>
-                          <p></p>
-                        </div>
-                        <i class="fas fa-angle-right next">
-                        </i>
-                      </div>
-                      <div class="weekdays">
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
-                      </div>
-                      <div class="days">
-                        <div class="prev-date">26</div>
-                        <div class="prev-date">27</div>
-                        <div class="prev-date">28</div>
-                        <div class="prev-date">29</div>
-                        <div class="prev-date">30</div>
-                        <div class="present-date">1</div>
-                        <div class="present-date">2</div>
-                        <div class="present-date">3</div>
-                        <div class="present-date">4</div>
-                        <div class="present-date">5</div>
-                        <div class="present-date">6</div>
-                        <div class="present-date">7</div>
-                        <div class="present-date">8</div>
-                        <div class="present-date">9</div>
-                        <div class="present-date">10</div>
-                        <div class="present-date">11</div>
-                        <div class="present-date">12</div>
-                        <div class="present-date">13</div>
-                        <div class="present-date">14</div>
-                        <div class="present-date">15</div>
-                        <div class="present-date">16</div>
-                        <div class="present-date">17</div>
-                        <div class="present-date">18</div>
-                        <div class="present-date">19</div>
-                        <div class="present-date">20</div>
-                        <div class="present-date">21</div>
-                        <div class="present-date">22</div>
-                        <div class="present-date">23</div>
-                        <div class="present-date">24</div>
-                        <div class="present-date">25</div>
-                        <div class="present-date">26</div>
-                        <div class="present-date">27</div>
-                        <div class="present-date">28</div>
-                        <div class="present-date">29</div>
-                        <div class="present-date">30</div>
-                        <div class="present-date">31</div>
-                        <div class="next-date">1</div>
-                        <div class="next-date">2</div>
-                        <div class="next-date">3</div>
-                        <div class="next-date">4</div>
-                        <div class="next-date">5</div>
-                        <div class="next-date">6</div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="form--div">
-                    <input type="text" name="checkout" id="checkout" placeholder="" value="">
-                <label for="checkout">Check Out</label>
-                <div class="datecontainer2">
-                  <div class="calendar2">
-                    <div class="month2">
-                      <i class="fas fa-angle-left prev2"></i>
-                      <div class="date2">
-                        <h1></h1>
-                        <p></p>
-                      </div>
-                      <i class="fas fa-angle-right next2">
-                      </i>
-                    </div>
-                    <div class="weekdays2">
-                      <div>Sun</div>
-                      <div>Mon</div>
-                      <div>Tue</div>
-                      <div>Wed</div>
-                      <div>Thu</div>
-                      <div>Fri</div>
-                      <div>Sat</div>
-                    </div>
-                    <div class="days2">
-                      <div class="prev-date2">26</div>
-                      <div class="prev-date2">27</div>
-                      <div class="prev-date2">28</div>
-                      <div class="prev-date2">29</div>
-                      <div class="prev-date2">30</div>
-                      <div class="present-date2">1</div>
-                      <div class="present-date2">2</div>
-                      <div class="present-date2">3</div>
-                      <div class="present-date2">4</div>
-                      <div class="present-date2">5</div>
-                      <div class="present-date2">6</div>
-                      <div class="present-date2">7</div>
-                      <div class="present-date2">8</div>
-                      <div class="present-date2">9</div>
-                      <div class="present-date2">10</div>
-                      <div class="present-date2">11</div>
-                      <div class="present-date2">12</div>
-                      <div class="present-date2">13</div>
-                      <div class="present-date2">14</div>
-                      <div class="present-date2">15</div>
-                      <div class="present-date2">16</div>
-                      <div class="present-date2">17</div>
-                      <div class="present-date2">18</div>
-                      <div class="present-date2">19</div>
-                      <div class="present-date2">20</div>
-                      <div class="present-date2">21</div>
-                      <div class="present-date2">22</div>
-                      <div class="present-date2">23</div>
-                      <div class="present-date2">24</div>
-                      <div class="present-date2">25</div>
-                      <div class="present-date2">26</div>
-                      <div class="present-date2">27</div>
-                      <div class="present-date2">28</div>
-                      <div class="present-date2">29</div>
-                      <div class="present-date2">30</div>
-                      <div class="present-date2">31</div>
-                      <div class="next-date2">1</div>
-                      <div class="next-date2">2</div>
-                      <div class="next-date2">3</div>
-                      <div class="next-date2">4</div>
-                      <div class="next-date2">5</div>
-                      <div class="next-date2">6</div>
-                    </div>
-                  </div>
-                </div>
-
-                </div>
-
-                    <div class="form--div">
-                        <input type="number" name="bathroomno" id="bathroomno" placeholder="Enter no of bathrooms">
-                    <label for="">No. of Baths</label>
+                        <input type="text" name="title" id="" placeholder="Enter title">
+                    <label for="">Title</label>
                     </div>
 
                     <div class="form--div">
-                      <input type="text" name="description" id="description" placeholder="Enter room description">
-                  <label for="description">Description</label>
-                  </div>
-
-                          <div class="form--div">
-                            <input type="text" name="featureone" id="featureone" placeholder="Enter feature one">
-                        <label for="featureone">Feature One</label>
-                        </div>
-
-                        <div class="form--div">
-                          <input type="text" name="featuretwo" id="featuretwo" placeholder="Enter feature two">
-                      <label for="featuretwo">Feature Two</label>
-                      </div>
-
-                      <div class="form--div">
-                        <input type="text" name="featurethree" id="featurethree" placeholder="Enter feature three">
-                    <label for="featurethree">Feature Three</label>
+                        <input type="text" name="firstname" id="" placeholder="Enter your first name">
+                    <label for="">First Name</label>
                     </div>
 
                     <div class="form--div">
-                      <input type="text" name="featurefour" id="featurefour" placeholder="Enter feature four">
-                  <label for="featurefour">Feature Four</label>
-                  </div>
-
-                  <div class="form--div">
-                    <input type="text" name="featurefive" id="featurefive" placeholder="Enter feature five">
-                <label for="featurefive">Feature Five</label>
-                </div>
-
-                <div class="form--div">
-                  <input type="text" name="featuresix" id="featuresix" placeholder="Enter feature six">
-              <label for="featuresix">Feature Six</label>
-              </div>
-
-                    <div class="form--div">
-                        <input type="number" name="guestno" id="guestno" placeholder="Enter guest no">
-                    <label for="guestno">No. of Guests</label>
+                        <input type="text" name="surname" id="" placeholder="Enter your surname">
+                    <label for="">Surname</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="number" name="pricepernight" id="pricepernight" placeholder="Enter price per night">
-                    <label for="pricepernight">Price Per Night</label>
+                        <input type="text" name="email" id="" placeholder="Enter your email">
+                    <label for="">Email</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage" id="roomimage" placeholder="Choose room image" accept="image/*">
-                    <label for="roomimage">Main Room Image</label>
+                        <input type="number" name="telephone" id="" placeholder="Enter your telephone">
+                    <label for="">Telephone</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage1" id="roomimage1" placeholder="Enter your city" accept="image/*">
-                    <label for="roomimage1">Room Image 1</label>
+                        <input type="number" name="mobile" id="" placeholder="Enter your mobile">
+                    <label for="">Mobile</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage2" id="roomimage2" placeholder="Enter your postcode" accept="image/*">
-                    <label for="roomimage2">Room Image 2</label>
+                        <input type="text" name="address" id="" placeholder="Enter your addrress">
+                    <label for="">Address</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage3" id="roomimage3" placeholder="Enter your postcode" accept="image/*">
-                    <label for="roomimage3">Room Image 3</label>
+                        <input type="text" name="city" id="" placeholder="Enter your city">
+                    <label for="">City</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage4" id="roomimage4" placeholder="Enter your postcode" accept="image/*">
-                    <label for="">Room Image 4</label>
+                        <input type="text" name="postcode" id="" placeholder="Enter your postcode">
+                    <label for="">Postcode</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage5" id="roomimage5" placeholder="Enter your postcode" accept="image/*">
-                    <label for="roomimage5">Room Image 5</label>
+                        <input type="text" name="residence" id="" placeholder="Enter your country of residence">
+                    <label for="">Country of Residence</label>
                     </div>
 
                     <div class="form--div">
-                        <input type="file" name="roomimage6" id="roomimage6" placeholder="Enter your postcode" accept="image/*">
-                    <label for="roomimage6">Room Image 6</label>
+                        <input type="text" name="arrivaltime" id="" placeholder="Enter your arrival time">
+                    <label for="">Arrival Time</label>
+                    </div>
+
+                    <div class="form--div">
+                        <input type="text" name="comments" id="" placeholder="Enter your comments">
+                    <label for="">Comments</label>
                     </div>
 
                     <div class="button-flex">
-                        <!-- <button class="first-button">back</button> -->
-                        <div style="display: none;">
-                            <img src="images/loading.svg" alt="" class="loading-img">
-                        </div>
-                    <button type="submit" id="submit">create room</button>
+                        <button class="first-button">back</button>
+                    <button type="submit" id="submit">confirm booking</button>
                     </div>
 
                     <div class="error">
@@ -1097,22 +883,57 @@ line-height: 31.7px;
             </div>
     </div>
 
+    <div class="booking-container-div-2">
+            <p class="booking-p">Your Booking Details</p>
+        <div>
+       
+            <p class="booking-p-2"><?php echo $value['room_name'];?></p>
+            
+            <div class="booking-flex">
+                <p>Check In</p>
+                <p><?php 
+                $date = new DateTimeImmutable($value['check_in_date']);
+                echo $date->format('l jS \o\f F Y '), "\n";
+                //echo $value['check_in_date'];?></p>
+            </div>
+            <div class="booking-flex">
+                <p>Check Out</p>
+                <p><?php 
+                 $date = new DateTimeImmutable($value['check_out_date']);
+                 echo $date->format('l jS \o\f F Y '), "\n";
+                //echo $value['check_out_date'];?></p>
+            </div>
+        </div>
+        <?php }}?>
+        <div class="booking-flex-2">
+            <p>Nights</p>
+            <p><?php 
+                        $date1 = strtotime($value['check_in_date']);
+                        $date2 = strtotime($value['check_out_date']);
+                        $diff = $date2 - $date1;
+                        $days = floor($diff / (60 * 60 * 24)) - 1;
+                        echo $days;
+                        ?></p>
+        </div>
+        <div class="booking-flex-2">
+            <p>Guests</p>
+            <p><?php echo $_GET['gno'];
+            ?></p>
+        </div>
+        <div class="booking-flex-2">
+            <p>Grand Total</p>
+            <p>£<?php $pricepernight = $_GET['p'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></p>
+        </div>
+    </div>
+     </div>
   </div>
 
-  
-
-
-  <!-- Success Modal -->
-  <div class="successmodal">
-    <div class="modalclosediv">
-      <img src="images/close.png" alt="" class="modalclose">
-    </div>
-    <div>
-      <img src="images/haven_logo3.png" alt="">
-    </div>
-    <p>Room Created Successfully
-    </p>
-  </div>
  
    <!-- Footer -->
    <div class="footer">
@@ -1146,7 +967,7 @@ line-height: 31.7px;
       <p class="head-2">Pages</p>
      <ul>
       <li><a href="index.php">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
       <li><a href="accomodation.html">Accomodation</a></li>
@@ -1188,38 +1009,29 @@ line-height: 31.7px;
   }
 
  
-  
- 
-  let submit =  document.querySelector('.formdiv2 #submit');
-  let roomform =  document.querySelector('#roomform');
-  let roomname =  roomform.querySelector('#roomname');
-  let roomlocation =  roomform.querySelector('#roomlocation');
-  let bedroomno =  roomform.querySelector('#bedroomno');
-  let bathroomno =  roomform.querySelector('#bathroomno');
-  let guestno =  roomform.querySelector('#guestno');
-  let pricepernight =  roomform.querySelector('#pricepernight');
-  let roomimage =  roomform.querySelector('#roomimage');
-  let roomimage1 =  roomform.querySelector('#roomimage1');
-  let roomimage2 =  roomform.querySelector('#roomimage2');
-  let roomimage3 =  roomform.querySelector('#roomimage3');
-  let roomimage4 =  roomform.querySelector('#roomimage4');
-  let roomimage5 =  roomform.querySelector('#roomimage5');
-  let roomimage6 =  roomform.querySelector('#roomimage6');
-  let allinputs = roomform.querySelectorAll('.form--div input');
-  let roomsubmit = roomform.querySelector('#submit');
-  let error = roomform.querySelector('.booking-child-2 .error');
-  let checkinput =  document.querySelector('.form--div #checkin');
-  let checkinput2 =  document.querySelector('.form--div #checkout');
+  let downinput = document.querySelector('#locationinput');
+  let downinput2 = document.querySelector('#locationinput2');
+  let numinput = document.querySelector('#numinput');
+  let numinput2 = document.querySelector('#numinput2');
+  let locationone = document.querySelector('#locations');
+  let locationtwo = document.querySelector('#locations2');
+  let locationthree = document.querySelector('#locations3');
+  let locationfour = document.querySelector('#locations4');
+  let checkinput =  document.querySelector('.form__div #checkinput');
+  let checkinput2 =  document.querySelector('.form__div #checkinput2');
+  let submit =  document.querySelector('#secondform #submit');
+  let form =  document.querySelector('#secondform');
+  let allinputs = form.querySelectorAll('#secondform input');
+  let uniqueinput = form.querySelector('#secondform #unique5');
+  let error = document.querySelector('.error');
+  let backbutton =  document.querySelector('.button-flex .first-button');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
   
-  roomform.onsubmit = (e) => {
+  form.onsubmit = (e) => {
     e.preventDefault();
-    // roomsubmit.innerHTML = "";
-    // roomsubmit.appendChild(document.querySelector('.loading-img'))
     checkNullInputs();
-    insertGroup();
-    // roomsubmit.innerHTML = "create room";
+    insertGuestDetails();
   }
 
   function checkNullInputs(){
@@ -1241,76 +1053,131 @@ line-height: 31.7px;
   }
 
 
+  function insertGuestDetails(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","inserters/uploadguestdetails.php",true);
+    xhr.onload = () => {
+      if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200) {
+          let data = xhr.response;
+           if(data === "success"){
+            //console.log("uploaded");
+            error.style.display = "flex";
+            error.style.backgroundColor = "green";
+            error.textContent = "Details submitted";
+            <?php 
+       $allrooms = $room->selectRoomDetails($_GET['id']);
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
+            location.href=`guestdetails.php?u=${uniqueinput.value}&unique=<?php echo $value['unique_id']?>&runi=uagfjagfaj`;
+            <?php }}?>
+            allinputs.forEach((element) => { 
+              element.value = "";
+            })
+           } else {
+               console.log(data);
+               error.style.display = "flex";
+               error.textContent = data;
+           }
+        }
+      }
+    }
+    let formData = new FormData(form);
+    xhr.send(formData);
+  }
   
+  backbutton.addEventListener('click',function(e){
+   location.href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka";
+  })
+
+//   window.addEventListener('click', function(e){   
+//   if (downinput.contains(e.target)  || downinput2.contains(e.target) || numinput.contains(e.target) ||  numinput2.contains(e.target) || checkinput.contains(e.target) || checkinput2.contains(e.target)){
+//     // Clicked in box
+//   } else{
+//     locationone.style.display = "none";
+//     locationtwo.style.display = "none";
+//     locationthree.style.display = "none";
+//     locationfour.style.display = "none";
+//     datecontainer.style.display = "none";
+//     datecontainer2.style.display = "none";
+//   }
+// });
+    
+  
+
+
+ 
+
+
+ 
+
+  // submit.addEventListener('click',function(){
+  //   location.href = "lastbooking.html";
+  // });
+  
+
+  
+
+ 
+
+   let optionclick3 = document.getElementsByName('category2');
+  
+   //console.log(document.querySelector('.form__div #locationinput').value)
+   
+   optionclick3.forEach((element) => {
+    element.onclick= () =>{
+      document.querySelector('#locationinput2').value
+                        = element.value;
+      locationthree.style.display = "none";
+    }
+   })
+
+   let optionclick4 = document.getElementsByName('number2');
+  
+  //console.log(document.querySelector('.form__div #locationinput').value)
+  
+  optionclick4.forEach((element) => {
+   element.onclick= () =>{
+     document.querySelector('#locationinput').value
+                       = element.value;
+     locationone.style.display = "none";
+   }
+  })
+
+
+  let optionclick5 = document.getElementsByName('numbers');
+  //console.log(optionclick5);
+  
+  //console.log(document.querySelector('.form__div #locationinput').value)
+  
+  optionclick5.forEach((element) => {
+   element.onclick= () =>{
+     document.querySelector('#numinput2').value
+                       = element.value;
+     locationfour.style.display = "none";
+   }
+  })
+
+
+
+
+
+   let optionclick2 = document.getElementsByName('number');
+   //console.log(document.querySelector('.form__div #locationinput').value)
+   
+   optionclick2.forEach((element) => {
+    element.onclick= () =>{
+      document.querySelector('#numinput').value
+                        = element.value;
+        locationtwo.style.display = "none";
+    }
+   })
+  
+
    //The Date Programming
    const date = new Date();
-  
-
-   const getDateValue = () => {
-    const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
-    checkinput.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
-    let todays = document.querySelectorAll('.present-date');
-
-let monthValue = document.querySelector('.date h1');
- todays.forEach((element) => {
-  element.onclick = () => {
-    let datevalue = element.innerHTML;
-    let monthval = monthValue.innerHTML;
-    let yearvalue = date.getFullYear();
-    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
-    checkinput.value = dateval;
-    datecontainer.style.display = "none";
-    // console.log(dateval);
-   }
-  
- })
-   }
-
-   const getDateValue2 = () => {
-    const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-   ];
-    checkinput2.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
-    let todays = document.querySelectorAll('.present-date2');
-
-let monthValue = document.querySelector('.date2 h1');
- todays.forEach((element) => {
-  element.onclick = () => {
-    let datevalue = element.innerHTML;
-    let monthval = monthValue.innerHTML;
-    let yearvalue = date.getFullYear();
-    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
-    checkinput2.value = dateval;
-    datecontainer2.style.display = "none";
-    // console.log(dateval);
-   }
-  
- })
-   }
 
    const renderCalendar = () => {
     date.setDate(1);
@@ -1346,8 +1213,7 @@ let monthValue = document.querySelector('.date2 h1');
    
    for(let i =1; i<=lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today present-date">${i}</div>`;
-      
+      days+=`<div class="today present-date">${i}</div>`; 
     }else {
       days+=`<div class="present-date">${i}</div>`;
     }
@@ -1407,7 +1273,6 @@ let monthValue = document.querySelector('.date2 h1');
 
 
     monthDays2.innerHTML = days;
-  
      
    }
 
@@ -1430,84 +1295,46 @@ let monthValue = document.querySelector('.date2 h1');
   //      });
   
    
-   document.querySelector('.prev').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar();
-     getDateValue();
-   })
+  //  document.querySelector('.prev').addEventListener('click',()=>{
+  //  date.setMonth(date.getMonth() -1)
+  //  renderCalendar();
+  //  })
 
-   document.querySelector('.prev2').addEventListener('click',()=>{
-   date.setMonth(date.getMonth() -1)
-   renderCalendar2();
-   getDateValue2();
-   })
+  //  document.querySelector('.prev2').addEventListener('click',()=>{
+  //  date.setMonth(date.getMonth() -1)
+  //  renderCalendar2();
+  //  })
 
-   document.querySelector('.next').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar();
-    getDateValue();
-    
-  })
+  //  document.querySelector('.next').addEventListener('click',()=>{
+  //   date.setMonth(date.getMonth()+ 1)
+  //   renderCalendar();
+  // })
 
-  document.querySelector('.next2').addEventListener('click',()=>{
-    date.setMonth(date.getMonth()+ 1)
-    renderCalendar2();
-     getDateValue2();
-  })
+  // document.querySelector('.next2').addEventListener('click',()=>{
+  //   date.setMonth(date.getMonth()+ 1)
+  //   renderCalendar2();
+  // })
 
-  renderCalendar();
-  renderCalendar2();
-  getDateValue();
-  getDateValue2();
+  // renderCalendar();
+  // renderCalendar2();
 
   
-  checkinput.onclick = () =>{
-    datecontainer.style.display = 'block';
-    datecontainer2.style.display = "none";
-  }
+  // checkinput.onclick = () =>{
+  //   datecontainer.style.display = 'block';
+  //   locationtwo.style.display = "none";
+  //   locationone.style.display = "none";
+  //   locationthree.style.display = "none";
+  //   datecontainer2.style.display = "none";
+  // }
 
-  checkinput2.onclick = () =>{
-    datecontainer2.style.display = 'block';
-    datecontainer.style.display = "none";
-  }
+  // checkinput2.onclick = () =>{
+  //   datecontainer2.style.display = 'block';
+  //   locationtwo.style.display = "none";
+  //   locationone.style.display = "none";
+  //   locationthree.style.display = "none";
+  //   datecontainer.style.display = "none";
+  // }
 
- 
-
-  
-
-  function insertGroup(){
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST","inserters/uploadroomdata.php",true);
-    xhr.onload = () => {
-      if(xhr.readyState === XMLHttpRequest.DONE){
-        if(xhr.status === 200) {
-          let data = xhr.response;
-           if(data === "success"){
-            //console.log("uploaded");
-            document.querySelector('.successmodal').style.display = "flex";
-            document.querySelector('.successmodal .modalclose').onclick = () => {
-              document.querySelector('.successmodal').style.display = "none";
-              window.location.reload();
-            }
-            error.style.display = "none";
-             console.log(data);
-           } else {
-               //console.log(data);
-               error.style.display = "flex";
-               error.textContent = data;
-           }
-        }
-      }
-    }
-    let formData = new FormData(roomform);
-    xhr.send(formData);
-  }
-
-  
-
-
-
-  
   </script>
 </body>
 </html>

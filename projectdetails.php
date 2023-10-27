@@ -159,6 +159,31 @@ if(move_uploaded_file($filetmp,$target_path) && move_uploaded_file($filetmp1,$ta
     }
     }
 
+    function createGuests($title,$firstname,$surname,$email,$telephone,$mobile,$address,
+    $city,$postcode,$residence,$arrivaltime,$comments,$uniqueid,$unique1,$unique2,$unique3,$unique4,$unique5,$unique6){
+        $sql = "INSERT INTO guest_details(unique_guest,title,first_name,surname,email,telephone,address,city,postcode,mobile,countryofresidence,arrival_time
+        ,comments,check_in_date,check_out_date,nights,guests,grandtotal,roomname) VALUES('{$uniqueid}','{$title}','{$firstname}','{$surname}','{$email}','{$telephone}','{$address}','{$city}','{$postcode}'
+        ,'{$mobile}','{$residence}','{$arrivaltime}','{$comments}','{$unique1}','{$unique2}','{$unique3}','{$unique4}','{$unique5}','{$unique6}')";
+        $result = $this->dbcon->query($sql);
+        if($this->dbcon->affected_rows == 1){
+            echo "success";
+        } else {
+            echo $this->dbcon->error;
+        }
+        
+    }
+
+    function selectGuestEmail($email){
+        $sql = "SELECT * FROm guest_details WHERE email='{$email}'";
+        $result = $this->dbcon->query($sql);
+        $row = $result->fetch_assoc();
+        if($result->num_rows == 1){
+            return $row;
+        } else {
+            return $row;
+        }
+    }
+
 
 
     function selectAllRooms(){
@@ -189,8 +214,32 @@ if(move_uploaded_file($filetmp,$target_path) && move_uploaded_file($filetmp1,$ta
         }
     }
 
+    function deleteRoom($unique){
+        $sql = "DELETE FROM rentroom WHERE unique_id ='{$unique}'";
+        $result = $this->dbcon->query($sql);
+        if($this->dbcon->affected_rows == 1){
+          echo "success";
+        } else {
+            //echo $this->dbcon->error;
+        }
+    }
+
     function selectRoomDetails($unique){
         $sql = "SELECT * FROM rentroom WHERE unique_id = '{$unique}'";
+        $result = $this->dbcon->query($sql);
+        $rows = array();
+        if($this->dbcon->affected_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+           return $rows;
+        } else {
+            return $rows;
+        }
+    }
+
+    function selectGuestDetails($unique){
+        $sql = "SELECT * FROM guest_details WHERE unique_guest = '{$unique}'";
         $result = $this->dbcon->query($sql);
         $rows = array();
         if($this->dbcon->affected_rows > 0){
@@ -202,6 +251,189 @@ if(move_uploaded_file($filetmp,$target_path) && move_uploaded_file($filetmp1,$ta
             return $rows;
         }
     }
+
+    function updateRoomDetails($roomname,$roomlocation,$noofbedrooms,$bathroomno,$noofguests,$pricepernight,$description,
+    $featureone,$featuretwo,$featurethree,$featurefour,$featurefive,$featuresix,$checkin,$checkout,$unique){
+        if(isset($_FILES['roomimage']) || isset($_FILES['roomimage1']) || isset($_FILES['roomimage2']) || isset($_FILES['roomimage3']) 
+        || isset($_FILES['roomimage4']) || isset($_FILES['roomimage5']) || isset($_FILES['roomimage6'])){
+           $filename = $_FILES['roomimage']['name'];
+           $filename1 = $_FILES['roomimage1']['name'];
+           $filename2 = $_FILES['roomimage2']['name'];
+           $filename3 = $_FILES['roomimage3']['name'];
+           $filename4 = $_FILES['roomimage4']['name'];
+           $filename5 = $_FILES['roomimage5']['name'];
+           $filename6 = $_FILES['roomimage6']['name'];
+           $filesize = $_FILES['roomimage']['size'];
+           $filesize1 = $_FILES['roomimage1']['size'];
+           $filesize2 = $_FILES['roomimage2']['size'];
+           $filesize3 = $_FILES['roomimage3']['size'];
+           $filesize4 = $_FILES['roomimage4']['size'];
+           $filesize5 = $_FILES['roomimage5']['size'];
+           $filesize6 = $_FILES['roomimage6']['size'];
+           $filetype = $_FILES['roomimage']['type'];
+           $filetype1 = $_FILES['roomimage1']['type'];
+           $filetype2 = $_FILES['roomimage2']['type'];
+           $filetype3 = $_FILES['roomimage3']['type'];
+           $filetype4 = $_FILES['roomimage4']['type'];
+           $filetype5 = $_FILES['roomimage5']['type'];
+           $filetype6 = $_FILES['roomimage6']['type'];
+           $file_error = $_FILES['roomimage']['error'];
+           $file_error1 = $_FILES['roomimage1']['error'];
+           $file_error2 = $_FILES['roomimage2']['error'];
+           $file_error3 = $_FILES['roomimage3']['error'];
+           $file_error4 = $_FILES['roomimage4']['error'];
+           $file_error5 = $_FILES['roomimage5']['error'];
+           $file_error6 = $_FILES['roomimage6']['error'];
+           $filetmp = $_FILES['roomimage']['tmp_name'];
+           $filetmp1 = $_FILES['roomimage1']['tmp_name'];
+           $filetmp2 = $_FILES['roomimage2']['tmp_name'];
+           $filetmp3 = $_FILES['roomimage3']['tmp_name'];
+           $filetmp4 = $_FILES['roomimage4']['tmp_name'];
+           $filetmp5 = $_FILES['roomimage5']['tmp_name'];
+           $filetmp6 = $_FILES['roomimage6']['tmp_name'];
+ 
+       
+ 
+         $extensions = array("gif","png","jpeg","svg","jpg");
+         $file_ext = explode(".",$filename);
+         $file_ext = end($file_ext);
+         $file_ext1 = explode(".",$filename1);
+         $file_ext1 = end($file_ext1);
+         $file_ext2 = explode(".",$filename2);
+         $file_ext2 = end($file_ext2);
+         $file_ext3 = explode(".",$filename3);
+         $file_ext3 = end($file_ext3);
+         $file_ext4 = explode(".",$filename4);
+         $file_ext4 = end($file_ext4);
+         $file_ext5 = explode(".",$filename5);
+         $file_ext5 = end($file_ext5);
+         $file_ext6 = explode(".",$filename6);
+         $file_ext6 = end($file_ext6);
+
+        
+
+ $roomphoto = "SELECT * FROM rentroom WHERE unique_id = '{$unique}'";
+         $result2 = $this->dbcon->query($roomphoto);
+         $row = $result2->fetch_assoc();
+ 
+         if(!empty($filename) || !empty($filename) || !empty($filename) || !empty($filename) || !empty($filename) || !empty($filename) || !empty($filename)){
+
+         
+ 
+ // upload document
+ $newfilename = time().rand().".".$file_ext;
+ $newfilename1 = time().rand().".".$file_ext1;
+ $newfilename2 = time().rand().".".$file_ext2;
+ $newfilename3 = time().rand().".".$file_ext3;
+ $newfilename4 = time().rand().".".$file_ext4;
+ $newfilename5 = time().rand().".".$file_ext5;
+ $newfilename6 = time().rand().".".$file_ext6;
+ 
+ $destination_path = getcwd().DIRECTORY_SEPARATOR;
+ $target_path = $destination_path . '../roomimage/'. basename($newfilename);
+ $target_path1 = $destination_path . '../roomimage/'. basename($newfilename1);
+ $target_path2 = $destination_path . '../roomimage/'. basename($newfilename2);
+ $target_path3 = $destination_path . '../roomimage/'. basename($newfilename3);
+ $target_path4 = $destination_path . '../roomimage/'. basename($newfilename4);
+ $target_path5 = $destination_path . '../roomimage/'. basename($newfilename5);
+ $target_path6 = $destination_path . '../roomimage/'. basename($newfilename6);
+ 
+ move_uploaded_file($filetmp,$target_path); 
+ move_uploaded_file($filetmp1,$target_path1);
+ move_uploaded_file($filetmp2,$target_path2);
+ move_uploaded_file($filetmp3,$target_path3);
+ move_uploaded_file($filetmp4,$target_path4); 
+ move_uploaded_file($filetmp5,$target_path5); 
+ move_uploaded_file($filetmp6,$target_path6);
+
+     $uniqueid = rand();
+     $sql = "UPDATE rentroom SET room_image = '{$newfilename}', room_image1 = '{$newfilename1}', room_image2 = '{$newfilename2}', room_image3 = '{$newfilename3}', room_image4 = '{$newfilename4}',
+     room_image5 = '{$newfilename5}', room_image6 = '{$newfilename6}', room_name = '{$roomname}', room_location = '{$roomlocation}', no_of_bedrooms = '{$noofbedrooms}', no_of_guests = '{$noofguests}',
+     price_per_night = '{$pricepernight}', no_of_baths = '{$bathroomno}', description = '{$description}', check_in_date = '{$checkin}', check_out_date = '{$checkout}',
+     feature_one = '{$featureone}', feature_two = '{$featuretwo}', feature_three = '{$featurethree}', feature_four = '{$featurefour}', feature_five = '{$featurefive}', 
+     feature_six = '{$featuresix}' WHERE unique_id = '{$unique}'";
+     $result = $this->dbcon->query($sql);
+     if($this->dbcon->affected_rows == 1){
+         echo "success";
+     } else {
+         //echo $this->dbcon->error;
+     }
+ 
+
+}  else {
+
+    // upload document
+ $newfilename = $row['room_image'];
+ $newfilename1 = $row['room_image1'];
+ $newfilename2 = $row['room_image2'];
+ $newfilename3 = $row['room_image3'];
+ $newfilename4 = $row['room_image4'];
+ $newfilename5 = $row['room_image5'];
+ $newfilename6 = $row['room_image6'];
+ 
+ $destination_path = getcwd().DIRECTORY_SEPARATOR;
+ $target_path = $destination_path . '../roomimage/'. basename($newfilename);
+ $target_path1 = $destination_path . '../roomimage/'. basename($newfilename1);
+ $target_path2 = $destination_path . '../roomimage/'. basename($newfilename2);
+ $target_path3 = $destination_path . '../roomimage/'. basename($newfilename3);
+ $target_path4 = $destination_path . '../roomimage/'. basename($newfilename4);
+ $target_path5 = $destination_path . '../roomimage/'. basename($newfilename5);
+ $target_path6 = $destination_path . '../roomimage/'. basename($newfilename6);
+ 
+ move_uploaded_file($filetmp,$target_path);
+ move_uploaded_file($filetmp1,$target_path1); 
+ move_uploaded_file($filetmp2,$target_path2); 
+ move_uploaded_file($filetmp3,$target_path3);
+ move_uploaded_file($filetmp4,$target_path4); 
+ move_uploaded_file($filetmp5,$target_path5); 
+ move_uploaded_file($filetmp6,$target_path6);
+
+     $uniqueid = rand();
+     $sql = "UPDATE rentroom SET room_image = '{$newfilename}', room_image1 = '{$newfilename1}', room_image2 = '{$newfilename2}', room_image3 = '{$newfilename3}', room_image4 = '{$newfilename4}',
+     room_image5 = '{$newfilename5}', room_image6 = '{$newfilename6}', room_name = '{$roomname}', room_location = '{$roomlocation}', no_of_bedrooms = '{$noofbedrooms}', no_of_guests = '{$noofguests}',
+     price_per_night = '{$pricepernight}', no_of_baths = '{$bathroomno}', description = '{$description}', check_in_date = '{$checkin}', check_out_date = '{$checkout}',
+     feature_one = '{$featureone}', feature_two = '{$featuretwo}', feature_three = '{$featurethree}', feature_four = '{$featurefour}', feature_five = '{$featurefive}', 
+     feature_six = '{$featuresix}' WHERE unique_id='{$unique}'";
+     $result = $this->dbcon->query($sql);
+     if($this->dbcon->affected_rows == 1){
+         echo "success";
+     } else {
+         //echo $this->dbcon->error;
+     }
+ 
+}
+     }
+    }
+
+
+    function searchRooms($location,$checkindate,$checkoutdate,$guestno){
+        $sql = "SELECT * FROM rentroom WHERE room_location = '{$location}' AND check_in_date='{$checkindate}' AND check_out_date = '{$checkoutdate}' AND no_of_guests='{$guestno}'";
+        $result = $this->dbcon->query($sql);
+        $rows = array();
+        if($this->dbcon->affected_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        } else {
+            return $rows;
+        }
+    }
+
+    function searchRooms2($bedroom,$bathroom,$guestno){
+        $sql = "SELECT * FROM rentroom WHERE no_of_bedrooms = '{$bedroom}' AND no_of_baths='{$bathroom}' AND no_of_guests='{$guestno}'";
+        $result = $this->dbcon->query($sql);
+        $rows = array();
+        if($this->dbcon->affected_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        } else {
+            return $rows;
+        }
+    }
+
  }
 
  
