@@ -94,7 +94,7 @@ include "projectdetails.php";
       <img src="images/Haven-home-image.png" alt="">
     </div>
     <div class="header">
-      <a href="index.html"><div class="logo">
+      <a href="index.php"><div class="logo">
         <img src="images/Haven_logo.svg" alt="">
       </div>
     </a>
