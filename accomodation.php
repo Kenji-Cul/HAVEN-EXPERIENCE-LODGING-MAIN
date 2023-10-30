@@ -1,3 +1,7 @@
+<?php 
+include "projectdetails.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,79 @@
         body{
     overflow-x:hidden;
     height: 300vh;
+}
+
+a{
+        text-decoration: none;
+      }
+
+      .datecontainer,.datecontainer2{
+        z-index: 5000;
+      }
+
+      .error{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 5px 0;
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  left: 1em;
+  top: 3em;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+      .product-content,.icon-content,.content-2{
+  width: 100%;
+  background-color: #CBB6A7;
+  padding: 15px 0;
+}
+
+.product-div .icon-content{
+    position: absolute;
+    bottom: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.product-div .content-2{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.content-2 p{
+  color: #fff;
+}
+
+.icon-content i{
+  color: #fff;
+}
+
+.icon-content .icon-child{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.icon-child p{
+  color: #fff;
 }
 
 /* Mobile Screen Styling */
@@ -45,7 +122,7 @@
         <li><a href="about.php">About</a></li>
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
-        <li class="home-link"><a href="accomodation.html">Accomodation</a></li>
+        <li class="home-link"><a href="accomodation.php">Accomodation</a></li>
         <li><a href="landlord.html">Landlord Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -319,6 +396,69 @@
 
   <!-- Main -->
   <div class="main">
+
+  <div class="large-text2-container">
+    <p class="large-text-2">
+      Discover accomodation that 
+    </p>
+    <p class="large-text-2">
+      meets your needs.
+    </p>
+    <p class="small-text">We operate a versatile group of properties, so we know what you are looking for.We have carefully</p>
+    <p class="small-text">selected partners throughout the UK ready for your stay.</p>
+  </div>
+
+  <div class="product-container">
+  <?php 
+       $room = new User;
+       $allrooms = $room->selectAllRooms();
+
+       if(!empty($allrooms)){
+        foreach ($allrooms as $key => $value) {
+      ?>
+         <div class="product-div">
+          <div>
+            <img src="roomimage/<?php if(isset($value['room_image'])){
+              echo $value['room_image'];
+            }
+            ?>" alt="">
+            <div class="product-content">
+             <div>
+               <p class="pone"><?php echo $value['room_name'];?></p>
+               <p class="ptwo"><?php echo $value['room_location'];?></p> 
+             </div>
+            <a href="accomodationinfo.php?id=<?php echo $value['unique_id']?>&name=ijflsjanfgnka"><button>View</button></a>
+          </div>
+           <div class="icon-content">
+            <div class="icon-child">
+              <i class="fa fa-bed" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_bedrooms'];?></span> Bedrooms</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-bath" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_baths'];?></span> Baths</p>
+            </div>
+            <div class="icon-child">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <p><span><?php echo $value['no_of_guests'];?></span> Guests</p>
+            </div>
+           <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+           </div>
+           <div class="content-2">
+            <p>£<span><?php $pricepernight = $value['price_per_night'];
+            if($pricepernight > 999 || $pricepernight > 9999 || $pricepernight > 99999 || $pricepernight > 999999 || $pricepernight > 999999){
+              echo number_format($pricepernight);
+            } else {
+              echo round($pricepernight);
+            }
+            ?></span>&nbsp;/&nbsp;night</p>
+           </div>
+           </div>
+        </div>
+        <?php }}?>
+
+  </div>
+
    
    <!-- Fifth Section -->  
    <div class="fifth-section">
@@ -403,7 +543,7 @@
       <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
-      <li><a href="accomodation.html">Accomodation</a></li>
+      <li><a href="accomodation.php">Accomodation</a></li>
      </ul>
     </div>
 
@@ -448,10 +588,46 @@
   let locationtwo = document.querySelector('#locations2');
   let checkinput =  document.querySelector('.form__div #checkinput');
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
+  let submit =  document.querySelector('.form__div #submit');
+  let form =  document.querySelector('.form');
+  let form2 =  document.querySelector('.flexcon-2-form2');
+  let allinputs = form.querySelectorAll('.form input');
+  let allinputs2 = form.querySelectorAll('.flexcon-2-form2 input');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
 
+  form.onsubmit = (e) => {
+    e.preventDefault();
+//console.log(allinputs);
+    allinputs.forEach((element) => {
+        //console.log(element);
+       if(element.value == ""){
+         element.style.borderColor = "red";
+       } else {
+        element.style.borderColor = "black";
+       }
+   
+   })
+
+if(downinput.style.borderColor == "black" && checkinput.style.borderColor == "black" && checkinput2.style.borderColor == "black" && numinput.style.borderColor == "black"){
+    location.href = `search.php?location=${downinput.value}&checkin=${checkinput.value}&checkout=${checkinput2.value}&guests=${numinput.value}`;
+}
   
+  }
+
+
+
+  
+  
+
+
+
+
+
+  downinput.readOnly = true;
+  numinput.readOnly = true;
+  checkinput.readOnly = true;
+  checkinput2.readOnly = true;
   
 
   window.addEventListener('click', function(e){   
@@ -460,8 +636,6 @@
   } else{
     locationone.style.display = "none";
     locationtwo.style.display = "none";
-    datecontainer.style.display = "none";
-    datecontainer2.style.display = "none";
   }
 });
     
@@ -479,7 +653,12 @@
     datecontainer2.style.display = "none";
   }
 
+
+
+  
+
    let optionclick = document.getElementsByName('category');
+  
    //console.log(document.querySelector('.form__div #locationinput').value)
    
    optionclick.forEach((element) => {
@@ -504,6 +683,73 @@
 
    //The Date Programming
    const date = new Date();
+  
+
+   const getDateValue = () => {
+    const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ];
+    checkinput.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
+    let todays = document.querySelectorAll('.present-date');
+
+let monthValue = document.querySelector('.date h1');
+ todays.forEach((element) => {
+  element.onclick = () => {
+    let datevalue = element.innerHTML;
+    let monthval = monthValue.innerHTML;
+    let yearvalue = date.getFullYear();
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
+    checkinput.value = dateval;
+    datecontainer.style.display = "none";
+    // console.log(dateval);
+   }
+  
+ })
+   }
+
+   const getDateValue2 = () => {
+    const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ];
+    checkinput2.value = new Date().getDate() + "-" + months[date.getMonth()] + "-"+ date.getFullYear();
+    let todays = document.querySelectorAll('.present-date2');
+
+let monthValue = document.querySelector('.date2 h1');
+ todays.forEach((element) => {
+  element.onclick = () => {
+    let datevalue = element.innerHTML;
+    let monthval = monthValue.innerHTML;
+    let yearvalue = date.getFullYear();
+    let dateval = datevalue + "-" +monthval +  "-" + yearvalue  
+    checkinput2.value = dateval;
+    datecontainer2.style.display = "none";
+    // console.log(dateval);
+   }
+  
+ })
+   }
 
    const renderCalendar = () => {
     date.setDate(1);
@@ -539,7 +785,8 @@
    
    for(let i =1; i<=lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-      days+=`<div class="today present-date">${i}</div>`; 
+      days+=`<div class="today present-date">${i}</div>`;
+      
     }else {
       days+=`<div class="present-date">${i}</div>`;
     }
@@ -599,6 +846,7 @@
 
 
     monthDays2.innerHTML = days;
+  
      
    }
 
@@ -624,25 +872,32 @@
    document.querySelector('.prev').addEventListener('click',()=>{
    date.setMonth(date.getMonth() -1)
    renderCalendar();
+     getDateValue();
    })
 
    document.querySelector('.prev2').addEventListener('click',()=>{
    date.setMonth(date.getMonth() -1)
    renderCalendar2();
+   getDateValue2();
    })
 
    document.querySelector('.next').addEventListener('click',()=>{
     date.setMonth(date.getMonth()+ 1)
     renderCalendar();
+    getDateValue();
+    
   })
 
   document.querySelector('.next2').addEventListener('click',()=>{
     date.setMonth(date.getMonth()+ 1)
     renderCalendar2();
+     getDateValue2();
   })
 
   renderCalendar();
   renderCalendar2();
+  getDateValue();
+  getDateValue2();
 
   
   checkinput.onclick = () =>{
@@ -659,11 +914,11 @@
     datecontainer.style.display = "none";
   }
 
+ 
   
   
 
   
  
-    </script>
-</body>
+    </script></body>
 </html>

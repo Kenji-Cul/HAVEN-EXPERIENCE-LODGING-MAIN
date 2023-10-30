@@ -173,6 +173,17 @@ if(move_uploaded_file($filetmp,$target_path) && move_uploaded_file($filetmp1,$ta
         
     }
 
+    function updateGuestDetails($filename,$unique){
+        $sql = "UPDATE guest_details SET document = '{$filename}' WHERE unique_guest = '{$unique}'";
+        $result = $this->dbcon->query($sql);
+        if($this->dbcon->affected_rows == 1){
+            echo "success";
+        } else {
+            echo $this->dbcon->error;
+        }
+        
+    }
+
     function selectGuestEmail($email){
         $sql = "SELECT * FROm guest_details WHERE email='{$email}'";
         $result = $this->dbcon->query($sql);

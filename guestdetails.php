@@ -302,6 +302,21 @@ letter-spacing: 0.15px;
   box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
 }
 
+.booking-child-2 .print{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 12px;
+  width: 8em;
+  border-radius: 6px;
+  background-color: #AA706A;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
 .booking-container .booking-container-div{
     width: 50%;
 }
@@ -777,7 +792,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
         <li ><a href="about.php">About</a></li>                                                                                                     
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
-        <li><a href="accomodation.html">Accomodation</a></li>
+        <li><a href="accomodation.php">Accomodation</a></li>
         <li><a href="landlord.html">Landlord Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -811,11 +826,18 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
         foreach ($allrooms2 as $key => $value) {
       ?>
                 <form action="" id="secondform" method="POST">
+                    <p>Click Twice to Print!</p>
+                    <?php if(isset($_GET['newdoc'])){?>
+                        <a href="userdocuments/<?php echo $value['document'];?>" style="color:white;" class="print">Print</a>
+                        <?php } else {?>
                         <button type="submit" id="submit">Print</button>
+                        <?php }?>
                         <?php 
                         if($_SERVER['REQUEST_METHOD'] == "POST"){ 
                             $uniquename = rand();
                             $filename = "document".$uniquename.".pdf";
+                            $allrooms3 = $room->updateGuestDetails($filename,$_GET['u']);
+                            $filename2 = "document".$uniquename."";
                             $name = $value['first_name'];
                         $name2 = $value['surname'];
                         $fullname = $name ." " . $name2;
@@ -826,8 +848,8 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
                         $guests = $value['guests'];
                       
                         $grandtotal = $value['grandtotal'];
-                        $url = "printdetails.php?filename='$filename'&name='$fullname'&roomname='$roomname'&arrival='$arrival'&departure='$departure'&nights='$nights'
-                        &guests='$guests'&grandtotal='$grandtotal'";
+                        $url = "printdetails.php?filename=".$filename."&name=".$fullname."&room=".$roomname."&arrival=".$arrival."&departure=".$departure."&nights=".$nights."
+                        &guests=".$guests."&grandtotal=".$grandtotal."&file=".$filename2."&u=".$_GET['u']."&unique=".$_GET['unique']."";
                         $url=str_replace(PHP_EOL, '', $url);
                           header("Location: $url");
                         }
@@ -944,7 +966,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
       <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
-      <li><a href="accomodation.html">Accomodation</a></li>
+      <li><a href="accomodation.php">Accomodation</a></li>
      </ul>
     </div>
 

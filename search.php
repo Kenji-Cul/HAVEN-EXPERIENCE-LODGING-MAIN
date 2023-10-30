@@ -377,7 +377,7 @@ padding: 1em;
         <li class="home-link"><a href="about.php">About</a></li>                                                                                                     
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
-        <li><a href="accomodation.html">Accomodation</a></li>
+        <li><a href="accomodation.php">Accomodation</a></li>
         <li><a href="landlord.html">Landlord Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -967,7 +967,7 @@ padding: 1em;
       <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
-      <li><a href="accomodation.html">Accomodation</a></li>
+      <li><a href="accomodation.php">Accomodation</a></li>
      </ul>
     </div>
 

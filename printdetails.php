@@ -94,7 +94,7 @@ $txt = '
     <div class="border">
         <div class="logo">
         <img src="data:image;base64,<?='.$pngbase64.';?>"/>
-<h1>yurLAND</h1>
+<h1>HAVEN EXPERIENCE LODGING</h1>
 </div>
 <div class="customer">
     <h4>Dear '.$_GET['name'].'</h4>
@@ -107,7 +107,6 @@ $txt = '
         <li>Departure: '.$_GET['departure'].'</li>
         <li>Nights: '.$_GET['nights'].'</li> 
         <li>Guests: '.$_GET['guests'].'</li>
-        <li>Price: £'.$_GET['price'].'</li>
         <li>Grand Total: £'.$_GET['grandtotal'].'</li>
     </ul>
 </div>
@@ -149,5 +148,7 @@ $output = $dompdf->output();
 file_put_contents($_GET['filename'], $output);
 rename("".$_GET['filename']."","userdocuments/".$_GET['filename']."");
 fclose($myfile);
+$file = $_GET['filename'];
+ header("Location: guestdetails.php?u=".$_GET['u']."&unique=".$_GET['unique']."&newdoc=present");
 
 ob_end_flush();

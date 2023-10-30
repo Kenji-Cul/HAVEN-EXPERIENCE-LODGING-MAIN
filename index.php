@@ -19,6 +19,22 @@ include "projectdetails.php";
         z-index: 5000;
       }
 
+      .error{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 5px 0;
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  left: 1em;
+  top: 3em;
+  box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
       .product-content,.icon-content,.content-2{
   width: 100%;
   background-color: #CBB6A7;
@@ -92,15 +108,32 @@ include "projectdetails.php";
           <img src="images/close.png" alt="" class="navclose">
         </div>
         <li class="home-link"><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.php">About</a></li>
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
-        <li><a href="accomodation.html">Accomodation</a></li>
+        <li><a href="accomodation.php">Accomodation</a></li>
         <li><a href="landlord.html">Landlord Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
 
+    <?php 
+    if(isset($_GET['error'])){
+      if($_GET['error'] != ""){
+    ?>
+    <div class="error">
+                     <?php echo $_GET['error'];?>
+                    </div>
+    <?php }}?>
+
+    <?php 
+      if(isset($_GET['success'])){
+      if($_GET['success'] != ""){
+    ?>
+    <div class="error" style="background-color: green;">
+                     <?php echo $_GET['success'];?>
+                    </div>
+    <?php }}?>
     <!-- Header Text -->
     <div class="header-text">
       <div class="text-one">
@@ -504,33 +537,33 @@ include "projectdetails.php";
           <div class="flexcon-2-form">
             <p class="large-text-4">Need something specific?</p>
             <p class="smallp">Please just give us a call or send an enquiry, and we will match you with the best deals and properties for your bespoke requirements.</p>
-            <form action="" class="flexcon-2-form2">
+            <form action="contactemail.php" class="flexcon-2-form2" method="POST">
               <div class="flex_form">
                   <div class="form__div">
-                    <input type="text" name="" id="" class="form__input" placeholder="Email">
+                    <input type="text" name="email" id="" class="form__input" placeholder="Email">
                   </div>
           
                   <div class="form__div">
-                    <input type="text" name="" id="" class="form__input" placeholder="Phone">
+                    <input type="number" name="phone" id="" class="form__input" placeholder="Phone">
                   </div>
               
                   <div class="form__div">
-                    <input type="text" name="" id="" class="form__input" placeholder="Name">
+                    <input type="text" name="name" id="" class="form__input" placeholder="Name">
                   </div>
 
                   <div class="form__div">
-                    <input type="text" name="" id="" class="form__input" placeholder="Company">
+                    <input type="text" name="company" id="" class="form__input" placeholder="Company">
                   </div>
             
                   <div class="form__div" id="messagediv">
-                    <input type="text" name="" id="message" class="form__input" placeholder="Message">
+                    <input type="text" name="message" id="message" class="form__input" placeholder="Message">
                   </div>
             </div>
 
             <div>
               <button type="submit" id="submit">submit</button>
             </div>
-              
+             
             </form>
           </div>
         </div>
@@ -615,11 +648,11 @@ include "projectdetails.php";
     <div class="footerdiv-3">
       <p class="head-2">Pages</p>
      <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
-      <li><a href="accomodation.html">Accomodation</a></li>
+      <li><a href="accomodation.php">Accomodation</a></li>
      </ul>
     </div>
 
@@ -666,7 +699,9 @@ include "projectdetails.php";
   let checkinput2 =  document.querySelector('.form__div #checkinput2');
   let submit =  document.querySelector('.form__div #submit');
   let form =  document.querySelector('.form');
+  let form2 =  document.querySelector('.flexcon-2-form2');
   let allinputs = form.querySelectorAll('.form input');
+  let allinputs2 = form.querySelectorAll('.flexcon-2-form2 input');
   let datecontainer = document.querySelector('.datecontainer');
   let datecontainer2 = document.querySelector('.datecontainer2');
 
@@ -688,6 +723,11 @@ if(downinput.style.borderColor == "black" && checkinput.style.borderColor == "bl
 }
   
   }
+
+
+
+  
+  
 
 
 

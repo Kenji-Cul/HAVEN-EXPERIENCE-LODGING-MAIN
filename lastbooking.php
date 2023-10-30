@@ -1,4 +1,7 @@
 <?php 
+if(!isset($_GET['id'])){
+  header("Location: index.php");
+}
 include "projectdetails.php";
 ?>
 
@@ -747,7 +750,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
         <li ><a href="about.php">About</a></li>                                                                                                     
         <li><a href="partner.html">Partner with us</a></li>
         <li><a href="affiliates.html">Affiliates</a></li>
-        <li><a href="accomodation.html">Accomodation</a></li>
+        <li><a href="accomodation.php">Accomodation</a></li>
         <li><a href="landlord.html">Landlord Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -970,7 +973,7 @@ box-shadow: 0px 2px 6px 4px rgba(50, 71, 92, 0.02), 0px 4px 9px 1px rgba(50, 71,
       <li><a href="about.php">About</a></li>
       <li><a href="partner.html">Become a Partner</a></li>
       <li><a href="affiliates.html">Affiliates</a></li>
-      <li><a href="accomodation.html">Accomodation</a></li>
+      <li><a href="accomodation.php">Accomodation</a></li>
      </ul>
     </div>
 

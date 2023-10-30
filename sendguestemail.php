@@ -40,6 +40,7 @@ try {
     echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
+
 header("Location: inserters/uploadguestdetails.php?message=success");
 
 
