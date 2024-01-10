@@ -22,7 +22,7 @@ $mail->isHTML(true);
 $mail->Username = EMAIL;
 $mail->Password = PASSWORD;
 // $mail->SetFrom('simpletech.notify@gmail.com', 'notification');
-$mail->Subject = 'From HAVEN EXPERIENCE LODGING';
+$mail->Subject = 'Message from HAVEN EXPERIENCE LODGING';
 $mail->Body = '<h2>Thank you for choosing '.$room.'.
 
 </h2><br>

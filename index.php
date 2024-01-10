@@ -20,19 +20,25 @@ include "projectdetails.php";
       }
 
       .error{
-  width: 70%;
+  width: 18em;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
   border-radius: 10px;
   margin: 0 auto;
+  margin-top: -40px;
   padding: 5px 0;
-  background-color: red;
+  background-color: rgb(233, 50, 50);
   color: #fff;
   position: absolute;
   left: 1em;
   top: 3em;
   box-shadow: 0px 1px 4px 2px rgba(50, 71, 92, 0.02), 0px 2px 6px 1px rgba(50, 71, 92, 0.04), 0px 1px 6px 2px rgba(50, 71, 92, 0.06);
+}
+
+.error img{
+  cursor: pointer;
 }
 
       .product-content,.icon-content,.content-2{
@@ -123,6 +129,7 @@ include "projectdetails.php";
     ?>
     <div class="error">
                      <?php echo $_GET['error'];?>
+                    <img src="images/closemsg.png" alt="">
                     </div>
     <?php }}?>
 
@@ -132,6 +139,7 @@ include "projectdetails.php";
     ?>
     <div class="error" style="background-color: green;">
                      <?php echo $_GET['success'];?>
+                     <img src="images/closemsg.png" alt="">
                     </div>
     <?php }}?>
     <!-- Header Text -->
@@ -1026,7 +1034,14 @@ let monthValue = document.querySelector('.date2 h1');
  
   
   
+let closeerror = document.querySelector('.error img');
+let errormsg = document.querySelector('.error');
 
+
+closeerror.onclick = () =>{
+  errormsg.style.display = "none";
+  location.href = "index.php";
+}
   
  
     </script>

@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty($email) || empty($phone) || empty($name) || empty($company) || empty($message)){
         $errormsg = "Please input fields"; 
     }
-     
+
     else {
 
         $mail = new PHPMailer(true);
@@ -32,7 +32,7 @@ $mail->isHTML(true);
 $mail->Username = EMAIL;
 $mail->Password = PASSWORD;
 // $mail->SetFrom('simpletech.notify@gmail.com', 'notification');
-$mail->Subject = 'From '.$name.'';
+$mail->Subject = 'Message from '.$name.'';
 $mail->Body = '<h2>Name: '.$name.'.
 </h2><br>
 <h2>Email: '.$email.'</p><h2>
